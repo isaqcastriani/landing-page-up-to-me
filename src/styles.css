@@ -117,3 +117,144 @@
     display: block;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* LP nova (/nova). Tudo escopado em .nv para não mexer nas outras LPs. */
+/* Roxo e laranja vêm do brandbook. As demais cores são derivações     */
+/* deles, marcadas como provisórias até a aprovação da Paula.          */
+/* ------------------------------------------------------------------ */
+.nv {
+  --nv-roxo: #5a0088;
+  --nv-laranja: #e3540e;
+  /* derivadas (provisórias) */
+  --nv-roxo-noite: #1e0630;
+  --nv-roxo-escuro: #33004d;
+  --nv-lilas: #efe4f7;
+  --nv-lilas-forte: #dcc6ee;
+  --nv-creme: #fbf8f3;
+  --nv-tinta: #1b1320;
+  --nv-texto: #4a4252; /* cinza provisório: o cinza do brandbook ainda está em aberto */
+  --nv-linha: #e8e0ec;
+  --nv-laranja-claro: #fde9de;
+
+  background-color: var(--nv-creme);
+  color: var(--nv-tinta);
+  font-family: "Inter", system-ui, sans-serif;
+  background-image:
+    linear-gradient(to right, rgba(90, 0, 136, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(90, 0, 136, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.nv .nv-title {
+  font-family: "Montserrat", "Inter", sans-serif;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+/* Palavra em destaque com cursores, como texto sendo editado pela IA. */
+.nv .nv-mark {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.12em;
+  margin: 0 0.04em;
+  background: var(--nv-lilas-forte);
+  color: var(--nv-roxo);
+  border-radius: 0.08em;
+}
+.nv .nv-mark::before,
+.nv .nv-mark::after {
+  content: "";
+  position: absolute;
+  top: -0.06em;
+  bottom: -0.06em;
+  width: 2px;
+  background: var(--nv-laranja);
+}
+.nv .nv-mark::before {
+  left: -1px;
+}
+.nv .nv-mark::after {
+  right: -1px;
+  animation: nv-blink 1.1s steps(1) infinite;
+}
+.nv .nv-mark--laranja {
+  background: var(--nv-laranja);
+  color: #fff;
+}
+.nv .nv-mark--laranja::before,
+.nv .nv-mark--laranja::after {
+  background: #fff;
+}
+
+@keyframes nv-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes nv-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.nv .nv-marquee {
+  animation: nv-marquee 38s linear infinite;
+}
+
+@keyframes nv-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.nv .nv-float {
+  animation: nv-float 6s ease-in-out infinite;
+}
+
+@keyframes nv-wave {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.nv .nv-wave > span {
+  animation: nv-wave 1.1s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.nv.nv-anim .nv-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.nv.nv-anim .nv-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nv .nv-marquee,
+  .nv .nv-float,
+  .nv .nv-wave > span,
+  .nv .nv-mark::after {
+    animation: none;
+  }
+  .nv.nv-anim .nv-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.nv .nv-caret {
+  animation: nv-blink 1.1s steps(1) infinite;
+}

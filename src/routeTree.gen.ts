@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BRouteImport } from './routes/b'
+import { Route as NovaRouteImport } from './routes/nova'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const BRoute = BRouteImport.update({
   path: '/b',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NovaRoute = NovaRouteImport.update({
+  id: '/nova',
+  path: '/nova',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/b': typeof BRoute
+  '/nova': typeof NovaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/b': typeof BRoute
+  '/nova': typeof NovaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/b': typeof BRoute
+  '/nova': typeof NovaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/b'
+  fullPaths: '/' | '/b' | '/nova'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/b'
-  id: '__root__' | '/' | '/b'
+  to: '/' | '/b' | '/nova'
+  id: '__root__' | '/' | '/b' | '/nova'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BRoute: typeof BRoute
+  NovaRoute: typeof NovaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nova': {
+      id: '/nova'
+      path: '/nova'
+      fullPath: '/nova'
+      preLoaderRoute: typeof NovaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BRoute: BRoute,
+  NovaRoute: NovaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
