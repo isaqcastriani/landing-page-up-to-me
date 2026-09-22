@@ -7,8 +7,12 @@ import {
   ChevronRight,
   Menu,
   MessageCircle,
+  ChartColumn,
+  Mic,
   Minus,
   Plus,
+  Smartphone,
+  Sparkles,
   Volume2,
   VolumeX,
   X,
@@ -35,7 +39,9 @@ import {
   ProfileCard,
   ReactionsCard,
   ReportMock,
+  Stage,
   reactions,
+  type StageTone,
 } from "@/components/nova/mocks";
 import {
   captureUtms,
@@ -367,12 +373,23 @@ function Pains() {
 /* Recursos                                                            */
 /* ------------------------------------------------------------------ */
 
+const featureTone = {
+  audio: "lilas",
+  "feedback-do-feedback": "roxo",
+  perfil: "laranja",
+  acao: "creme",
+} as const satisfies Record<(typeof features)[number]["key"], StageTone>;
+
 function FeatureVisual({ id }: { id: (typeof features)[number]["key"] }) {
   if (id === "audio") {
     return (
-      <div className="space-y-2">
-        <AudioBubble className="w-full" />
-        <FeedbackCard compact className="w-full" />
+      <div className="flex w-full flex-col items-center">
+        <AudioBubble className="w-full max-w-[19rem]" />
+        <span className="my-2 h-5 w-px bg-[var(--nv-roxo)]/30" />
+        <span className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[14px] font-semibold text-[var(--nv-roxo)] shadow-[0_10px_30px_-12px_rgba(51,0,77,0.45)]">
+          <Sparkles className="size-4 text-[var(--nv-laranja)]" />
+          Feedback pronto em 4 partes
+        </span>
       </div>
     );
   }
@@ -388,35 +405,28 @@ function Features() {
         Tudo que o líder precisa pra ter a <Mark>conversa certa</Mark>
       </SectionTitle>
       <div className="mx-auto mt-12 grid max-w-[1350px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {features.map((feature, i) => {
-          const dark = feature.tone === "escuro";
-          return (
-            <article
-              key={feature.key}
-              className={cn(
-                "nv-reveal flex flex-col overflow-hidden rounded-3xl",
-                dark ? "bg-[var(--nv-roxo-noite)] text-white" : "bg-[var(--nv-lilas)] text-[var(--nv-tinta)]",
-              )}
-              style={{ transitionDelay: `${i * 90}ms` }}
-            >
-              <div className="p-6 pb-5">
-                <img
-                  src={simbolo}
-                  alt=""
-                  className={cn("h-6 w-auto", dark && "brightness-0 invert")}
-                />
-                <h3 className="nv-title mt-4 text-2xl font-bold">{feature.title}</h3>
-                <p className={cn("mt-3 text-[17px] leading-relaxed", dark ? "text-white/75" : "text-[var(--nv-texto)]")}>
-                  <strong className={dark ? "text-white" : "text-[var(--nv-tinta)]"}>{feature.lead}</strong>
-                  {feature.description}
-                </p>
-              </div>
-              <div className="mt-auto px-3 pb-3">
-                <FeatureVisual id={feature.key} />
-              </div>
-            </article>
-          );
-        })}
+        {features.map((feature, i) => (
+          <article
+            key={feature.key}
+            className="nv-reveal flex flex-col rounded-[2rem] border border-[var(--nv-linha)] bg-white p-3"
+            style={{ transitionDelay: `${i * 90}ms` }}
+          >
+            <div className="px-4 pt-4 pb-6">
+              <span className="inline-flex items-center gap-2 text-[15px] font-semibold text-[var(--nv-roxo)]">
+                <img src={simbolo} alt="" className="h-5 w-auto" />
+                0{i + 1}
+              </span>
+              <h3 className="nv-title mt-3 text-2xl font-bold">{feature.title}</h3>
+              <p className="mt-3 text-[17px] leading-relaxed text-[var(--nv-texto)]">
+                <strong className="text-[var(--nv-tinta)]">{feature.lead}</strong>
+                {feature.description}
+              </p>
+            </div>
+            <Stage tone={featureTone[feature.key]} className="mt-auto min-h-[300px] px-4 py-8">
+              <FeatureVisual id={feature.key} />
+            </Stage>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -426,33 +436,21 @@ function Features() {
 /* Como funciona                                                       */
 /* ------------------------------------------------------------------ */
 
+const STEP_MS = 5000;
+const stepIcons = [Smartphone, Mic, Sparkles, ChartColumn] as const;
+
 function StepVisual({ index }: { index: number }) {
-  if (index === 0) {
-    return (
-      <div className="grid h-full place-items-center p-6">
-        <PhoneLoginMock />
-      </div>
-    );
-  }
+  if (index === 0) return <PhoneLoginMock />;
   if (index === 1) {
     return (
-      <div className="grid h-full place-items-center p-6">
-        <AudioBubble className="w-full max-w-xs" />
+      <div className="flex flex-col items-center gap-3">
+        <AudioBubble />
+        <GeneratingCard />
       </div>
     );
   }
-  if (index === 2) {
-    return (
-      <div className="grid h-full place-items-center p-6">
-        <NetworkMock className="max-w-sm" />
-      </div>
-    );
-  }
-  return (
-    <div className="grid h-full place-items-center p-6">
-      <ReportMock className="max-w-sm" />
-    </div>
-  );
+  if (index === 2) return <NetworkMock />;
+  return <ReportMock />;
 }
 
 function HowItWorks() {
@@ -461,9 +459,9 @@ function HowItWorks() {
 
   useEffect(() => {
     if (paused) return;
-    const id = window.setInterval(() => setActive((v) => (v + 1) % steps.length), 4200);
-    return () => window.clearInterval(id);
-  }, [paused]);
+    const id = window.setTimeout(() => setActive((v) => (v + 1) % steps.length), STEP_MS);
+    return () => window.clearTimeout(id);
+  }, [active, paused]);
 
   return (
     <section id="como-funciona" className="scroll-mt-24 px-4 py-16 sm:py-24">
@@ -475,49 +473,70 @@ function HowItWorks() {
         contar o que aconteceu.
       </p>
 
-      <div className="mx-auto mt-12 grid max-w-[1350px] items-center gap-8 lg:grid-cols-[1fr_1.1fr]">
-        <MockFrame className="nv-reveal h-[340px] w-full sm:h-[380px]" title={`Passo ${active + 1} de ${steps.length}`}>
-          <StepVisual index={active} />
-        </MockFrame>
+      <div className="mx-auto mt-12 grid max-w-[1350px] items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+        <Stage tone="roxo" className="nv-reveal min-h-[440px] sm:min-h-[500px]">
+          <div key={active} className="nv-swap flex w-full justify-center">
+            <StepVisual index={active} />
+          </div>
+        </Stage>
 
-        <ol className="space-y-3" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        <ol onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
           {steps.map((step, i) => {
             const on = i === active;
+            const Icon = stepIcons[i] ?? Sparkles;
             return (
-              <li key={step.title} className="nv-reveal" style={{ transitionDelay: `${i * 80}ms` }}>
+              <li
+                key={step.title}
+                className="nv-reveal border-b border-[var(--nv-linha)] first:border-t"
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
                 <button
                   type="button"
-                  onClick={() => {
-                    setActive(i);
-                    setPaused(true);
-                  }}
-                  aria-pressed={on}
-                  className={cn(
-                    "flex w-full items-center gap-5 rounded-3xl border px-5 py-5 text-left transition-colors sm:px-7",
-                    on
-                      ? "border-[var(--nv-lilas-forte)] bg-[var(--nv-lilas)]"
-                      : "border-[var(--nv-linha)] bg-white hover:bg-[var(--nv-creme)]",
-                  )}
+                  onClick={() => setActive(i)}
+                  aria-expanded={on}
+                  className="group block w-full py-6 text-left"
                 >
+                  <span className="flex items-center gap-4">
+                    <span
+                      className={cn(
+                        "flex size-10 shrink-0 items-center justify-center rounded-xl transition-colors",
+                        on ? "bg-[var(--nv-roxo)] text-white" : "bg-[var(--nv-lilas)] text-[var(--nv-roxo)]/60",
+                      )}
+                    >
+                      <Icon className="size-5" strokeWidth={2} />
+                    </span>
+                    <span
+                      className={cn(
+                        "nv-title flex-1 text-xl font-bold transition-colors sm:text-2xl",
+                        on ? "text-[var(--nv-tinta)]" : "text-[var(--nv-tinta)]/45 group-hover:text-[var(--nv-tinta)]/70",
+                      )}
+                    >
+                      {step.title}
+                    </span>
+                    <span className="text-[15px] font-semibold text-[var(--nv-texto)]/60 tabular-nums">0{i + 1}</span>
+                  </span>
                   <span
                     className={cn(
-                      "nv-title text-4xl font-bold sm:text-5xl",
-                      on ? "text-[var(--nv-roxo)]" : "text-[var(--nv-tinta)]",
+                      "grid transition-[grid-template-rows,opacity] duration-500",
+                      on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
                     )}
                   >
-                    0{i + 1}
+                    <span className="overflow-hidden">
+                      <span className="block pt-3 pl-14 text-lg leading-relaxed text-[var(--nv-texto)]">
+                        {step.description}
+                      </span>
+                    </span>
                   </span>
-                  <span className="flex-1">
-                    <span className="nv-title block text-xl font-bold sm:text-2xl">{step.title}</span>
-                    <span className="mt-1 block leading-snug text-[var(--nv-texto)]">{step.description}</span>
-                  </span>
-                  <span
-                    className={cn(
-                      "size-2 shrink-0 rounded-full",
-                      on ? "bg-[var(--nv-laranja)]" : "bg-[var(--nv-linha)]",
-                    )}
-                  />
                 </button>
+                <span className="relative -mb-px block h-[2px] overflow-hidden">
+                  {on ? (
+                    <span
+                      key={`${active}-${paused}`}
+                      className={cn("absolute inset-y-0 left-0 bg-[var(--nv-roxo)]", paused ? "w-full" : "nv-progress")}
+                      style={{ animationDuration: `${STEP_MS}ms` }}
+                    />
+                  ) : null}
+                </span>
               </li>
             );
           })}
@@ -1197,8 +1216,8 @@ function FinalCta() {
             Resposta pelo WhatsApp. Demonstração sem compromisso.
           </p>
         </div>
-        <FeedbackCard compact className="absolute -top-20 -left-24 z-20 hidden rotate-[-4deg] xl:block" />
-        <ReactionsCard className="absolute -right-24 -bottom-14 z-20 hidden w-80 rotate-[3deg] xl:block" />
+        <FeedbackCard compact className="absolute -top-16 -left-6 z-20 hidden rotate-[-4deg] xl:block" />
+        <ReactionsCard className="absolute -right-6 -bottom-14 z-20 hidden w-80 rotate-[3deg] xl:block" />
       </div>
     </section>
   );

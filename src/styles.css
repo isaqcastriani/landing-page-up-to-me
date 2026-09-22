@@ -258,3 +258,33 @@
 .nv .nv-caret {
   animation: nv-blink 1.1s steps(1) infinite;
 }
+
+@keyframes nv-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.nv .nv-progress {
+  animation: nv-progress linear forwards;
+}
+@keyframes nv-swap {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+.nv .nv-swap {
+  animation: nv-swap 0.5s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nv .nv-progress {
+    animation: none;
+    width: 100%;
+  }
+  .nv .nv-swap {
+    animation: none;
+  }
+}
