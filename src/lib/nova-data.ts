@@ -192,24 +192,6 @@ export const coexist = [
   },
 ] as const;
 
-export const offerRows = [
-  {
-    title: "Demonstração no seu contexto",
-    description: "Com exemplos do seu tipo de empresa, não um vídeo genérico.",
-    tag: "30 min",
-  },
-  {
-    title: "Plataforma + gente de RH",
-    description: "Implantação e acompanhamento por quem entende de liderança.",
-    tag: "junto",
-  },
-  {
-    title: "Começa na mesma semana",
-    description: "Sem projeto de implantação de meses. Login pelo celular, sem e-mail.",
-    tag: "rápido",
-  },
-] as const;
-
 // O que cada reação faz, na seção "depois do feedback".
 export const reactionSteps = [
   { reaction: "Foco no objetivo", description: "Entendeu o recado e segue no que foi combinado.", note: "Registrado no histórico" },

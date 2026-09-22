@@ -11,8 +11,10 @@ import {
   Target,
   ArrowUpRight,
   Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
+  Lock,
   Menu,
   MessageCircle,
   ChartColumn,
@@ -32,7 +34,6 @@ import fotoPiscadela from "@/assets/nova/foto-piscadela.webp";
 import fotoConversa from "@/assets/nova/foto-conversa.webp";
 import fotoEstoque from "@/assets/nova/foto-estoque.webp";
 import fotoRh from "@/assets/nova/foto-rh.webp";
-import fotoDemonstracao from "@/assets/nova/foto-demonstracao.webp";
 import vslPoster from "@/assets/nova/vsl-poster.webp";
 import {
   AudioBubble,
@@ -68,7 +69,6 @@ import {
   features,
   marquee,
   nav,
-  offerRows,
   reactionSteps,
   pains,
   platform,
@@ -141,7 +141,7 @@ function Cta({
       }}
       className={cn(
         "group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--nv-roxo)]",
-        size === "lg" ? "h-14 px-8 text-xl sm:h-16 sm:px-10 sm:text-2xl" : "h-10 px-5 text-base",
+        size === "lg" ? "h-14 w-full max-w-[420px] px-8 text-lg sm:h-16 sm:w-auto sm:max-w-none sm:px-10 sm:text-2xl" : "h-10 px-5 text-base",
         variant === "laranja" &&
           "border border-[#d9661f]/35 bg-[#f7945a] text-[var(--nv-roxo-noite)] hover:bg-[#f5a06c]",
         variant === "roxo" && "bg-[var(--nv-roxo)] text-white hover:bg-[var(--nv-roxo-escuro)]",
@@ -303,20 +303,22 @@ function Hero() {
         <div className="nv-reveal">
           <Pill>
             <img src={simbolo} alt="" className="h-4 w-auto brightness-0 invert" />
-            Criado por consultoras de RH, pra quem lidera gente
+            <span className="sm:hidden">Criado por consultoras de RH</span>
+            <span className="hidden sm:inline">Criado por consultoras de RH, pra quem lidera gente</span>
           </Pill>
         </div>
         <h1 className="nv-reveal nv-title mt-7 text-[2.45rem] font-bold text-[var(--nv-tinta)] sm:text-6xl lg:text-[4.4rem]">
           Seu líder manda um áudio. A UPtoME devolve um <Mark>feedback</Mark> de verdade.
         </h1>
-        <p className="nv-reveal mx-auto mt-6 max-w-3xl text-xl leading-relaxed text-[var(--nv-texto)] sm:text-2xl">
+        <p className="nv-reveal mx-auto mt-6 max-w-3xl text-lg sm:text-xl leading-relaxed text-[var(--nv-texto)] sm:text-2xl">
           Sem formulário e sem avaliação anual esquecida. A IA reescreve o que o líder disse pensando em quem vai
           receber, <strong className="font-semibold text-[var(--nv-tinta)]">registra tudo e mostra pra ele como falar melhor da próxima vez.</strong>
         </p>
         <div className="nv-reveal mx-auto mt-9 flex w-full max-w-[480px] flex-col">
-          <Cta local="hero" className="relative z-10 w-full" />
-          <span className="mx-6 -mt-1 rounded-b-2xl bg-[var(--nv-roxo-noite)] px-4 pt-2.5 pb-2.5 text-center text-[14px] font-medium text-[#ffb489] sm:mx-8 sm:text-[15px]">
-            Demonstração pelo WhatsApp, sem compromisso
+          <Cta local="hero" className="relative z-10 w-full max-w-none" />
+          <span className="mx-4 -mt-1 rounded-b-2xl bg-[var(--nv-roxo-noite)] px-4 pt-2.5 pb-2.5 text-center text-[13px] font-medium text-[#ffb489] sm:mx-8 sm:text-[15px]">
+            <span className="sm:hidden">Demo pelo WhatsApp, sem compromisso</span>
+            <span className="hidden sm:inline">Demonstração pelo WhatsApp, sem compromisso</span>
           </span>
         </div>
       </div>
@@ -358,7 +360,7 @@ function Pains() {
           {pains.map((pain, i) => (
             <article
               key={pain.title}
-              className="nv-reveal rounded-3xl border border-[var(--nv-linha)] bg-white p-7"
+              className="nv-reveal rounded-3xl border border-[var(--nv-linha)] bg-white p-6 text-center sm:p-7 sm:text-left"
               style={{ transitionDelay: `${i * 90}ms` }}
             >
               <span className="nv-title text-4xl font-bold text-[var(--nv-laranja)]">0{i + 1}</span>
@@ -367,7 +369,7 @@ function Pains() {
             </article>
           ))}
         </div>
-        <p className="nv-reveal mx-auto mt-10 max-w-3xl text-center text-xl text-[var(--nv-texto)]">
+        <p className="nv-reveal mx-auto mt-10 max-w-3xl text-center text-lg sm:text-xl text-[var(--nv-texto)]">
           Não é falta de boa vontade do líder. Ninguém ensina a ter conversa difícil{" "}
           <strong className="text-[var(--nv-tinta)]">no momento em que ela acontece.</strong> É exatamente aí que a
           UPtoME entra.
@@ -424,7 +426,7 @@ function Features() {
             )}
             style={{ transitionDelay: `${i * 90}ms` }}
           >
-            <div className="px-4 pt-4 pb-6">
+            <div className="px-4 pt-4 pb-6 text-center sm:text-left">
               <span
                 className={cn(
                   "inline-flex items-center gap-2 text-[15px] font-semibold",
@@ -487,7 +489,7 @@ function HowItWorks() {
       <SectionTitle className="nv-reveal">
         Como <Mark>funciona:</Mark>
       </SectionTitle>
-      <p className="nv-reveal mx-auto mt-5 max-w-3xl text-center text-xl text-[var(--nv-texto)]">
+      <p className="nv-reveal mx-auto mt-5 max-w-3xl text-center text-lg sm:text-xl text-[var(--nv-texto)]">
         A UPtoME cuida da parte difícil: entender quem vai receber e achar as palavras certas. O líder só precisa
         contar o que aconteceu.
       </p>
@@ -604,7 +606,8 @@ function BeforeAfter() {
           <div className="nv-reveal">
             <Pill dark>
               <img src={simbolo} alt="" className="h-4 w-auto brightness-0 invert" />
-              Antes e depois, do jeito que acontece no app
+              <span className="sm:hidden">Antes e depois, no app</span>
+              <span className="hidden sm:inline">Antes e depois, do jeito que acontece no app</span>
             </Pill>
           </div>
           <h2 className="nv-reveal nv-title mx-auto mt-6 max-w-4xl text-[2.1rem] font-bold sm:text-5xl lg:text-[3.4rem]">
@@ -705,7 +708,7 @@ function Audience() {
             <article
               key={a.title}
               className={cn(
-                "nv-reveal flex flex-col rounded-3xl p-8 shadow-[0_20px_50px_-30px_rgba(51,0,77,0.4)]",
+                "nv-reveal flex flex-col rounded-3xl p-6 text-center shadow-[0_20px_50px_-30px_rgba(51,0,77,0.4)] sm:p-8 sm:text-left",
                 dark ? "bg-[var(--nv-roxo-noite)] text-white" : "bg-[var(--nv-lilas)]",
               )}
               style={{ transitionDelay: `${i * 90}ms` }}
@@ -730,10 +733,10 @@ function Audience() {
             </article>
           );
         })}
-        <article className="nv-reveal flex flex-col rounded-3xl bg-[var(--nv-lilas)] p-8 shadow-[0_20px_50px_-30px_rgba(51,0,77,0.4)] [transition-delay:180ms]">
+        <article className="nv-reveal flex flex-col rounded-3xl bg-[var(--nv-lilas)] p-6 text-center shadow-[0_20px_50px_-30px_rgba(51,0,77,0.4)] [transition-delay:180ms] sm:p-8 sm:text-left">
           <h3 className="nv-title text-3xl font-bold">E pra quem usa</h3>
-          <p className="mt-5 text-xl font-semibold">Se o seu time...</p>
-          <ul className="mt-3 space-y-2.5">
+          <p className="mt-5 text-lg sm:text-xl font-semibold">Se o seu time...</p>
+          <ul className="mx-auto mt-3 w-fit space-y-2.5 text-left sm:mx-0">
             {signals.map((s) => (
               <li key={s} className="flex items-start gap-3 text-xl leading-snug font-medium">
                 <span className="mt-2.5 size-2 shrink-0 rounded-full bg-[var(--nv-laranja)]" />
@@ -741,7 +744,7 @@ function Audience() {
               </li>
             ))}
           </ul>
-          <p className="mt-auto pt-8 text-xl leading-relaxed text-[var(--nv-texto)]">
+          <p className="mt-auto pt-8 text-lg sm:text-xl leading-relaxed text-[var(--nv-texto)]">
             Se você já pensou &ldquo;o problema não é o time, é a conversa&rdquo;, é pra você.
           </p>
         </article>
@@ -795,17 +798,19 @@ function PlatformAndPeople() {
       <SectionTitle className="nv-reveal">
         Você não leva só a <Mark>ferramenta</Mark>
       </SectionTitle>
-      <p className="nv-reveal mx-auto mt-5 max-w-3xl text-center text-xl text-[var(--nv-texto)]">
+      <p className="nv-reveal mx-auto mt-5 max-w-3xl text-center text-lg sm:text-xl text-[var(--nv-texto)]">
         <strong className="text-[var(--nv-tinta)]">Plataforma sozinha não muda cultura. Treinamento sozinho evapora.</strong>{" "}
         A UPtoME junta as duas coisas: a ferramenta pro dia a dia e gente de RH do seu lado.
       </p>
 
       <div className="mx-auto mt-12 max-w-[1350px] space-y-4">
-        <div className="nv-reveal grid gap-8 rounded-3xl border border-[var(--nv-linha)] bg-white p-7 sm:p-10 md:grid-cols-2 md:items-center">
+        <div className="nv-reveal grid gap-8 rounded-3xl border border-[var(--nv-linha)] bg-white p-5 sm:p-10 md:grid-cols-2 md:items-center">
           <div>
-            <NumberBadge n="01" />
-            <h3 className="nv-title mt-5 text-3xl font-bold">A plataforma</h3>
-            <p className="mt-3 text-xl leading-relaxed text-[var(--nv-texto)]">
+            <div className="flex justify-center md:justify-start">
+              <NumberBadge n="01" />
+            </div>
+            <h3 className="nv-title mt-5 text-center text-3xl font-bold md:text-left">A plataforma</h3>
+            <p className="mt-3 text-center text-lg leading-relaxed text-[var(--nv-texto)] sm:text-xl md:text-left">
               Tudo que o líder e o RH precisam pra conversa acontecer, virar ação e ficar registrada.
             </p>
           </div>
@@ -822,11 +827,13 @@ function PlatformAndPeople() {
           </ul>
         </div>
 
-        <div className="nv-reveal grid gap-8 rounded-3xl bg-[var(--nv-lilas)] p-7 sm:p-10 md:grid-cols-2 md:items-center">
+        <div className="nv-reveal grid gap-8 rounded-3xl bg-[var(--nv-lilas)] p-5 sm:p-10 md:grid-cols-2 md:items-center">
           <div>
-            <NumberBadge n="02" />
-            <h3 className="nv-title mt-5 text-3xl font-bold">Gente de RH junto</h3>
-            <p className="mt-3 text-xl leading-relaxed text-[var(--nv-texto)]">
+            <div className="flex justify-center md:justify-start">
+              <NumberBadge n="02" />
+            </div>
+            <h3 className="nv-title mt-5 text-center text-3xl font-bold md:text-left">Gente de RH junto</h3>
+            <p className="mt-3 text-center text-lg leading-relaxed text-[var(--nv-texto)] sm:text-xl md:text-left">
               A UPtoME nasceu de consultoras que passaram anos treinando liderança e viram o treino evaporar. Elas
               continuam do seu lado depois da venda.
             </p>
@@ -884,16 +891,16 @@ function Coexist() {
   return (
     <section className="px-4 py-12 sm:py-20">
       <div className="nv-reveal relative mx-auto grid max-w-[1350px] overflow-hidden rounded-[2.5rem] bg-[var(--nv-lilas)] lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="relative min-h-[360px]">
+        <div className="relative min-h-[380px] sm:min-h-[360px]">
           <img
             src={fotoPiscadela}
             alt="Líder de equipe sorrindo e dando uma piscadela"
             loading="lazy"
             className="absolute inset-0 h-full w-full object-cover object-top"
           />
-          <ReactionsCard active={2} className="absolute right-4 bottom-4 left-4 max-w-xs sm:left-auto" />
+          <ReactionsCard active={2} className="absolute right-4 bottom-4 hidden max-w-xs sm:block" />
         </div>
-        <div className="p-7 sm:p-12">
+        <div className="p-5 text-center sm:p-12 sm:text-left">
           <Pill>
             <Check className="size-4" strokeWidth={3} />
             Nada de trocar de sistema
@@ -904,7 +911,7 @@ function Coexist() {
           <div className="mt-8 space-y-3">
             {coexist.map((item) => (
               <div key={item.title} className="rounded-2xl bg-white px-5 py-5 sm:px-6">
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col-reverse items-center gap-2 sm:flex-row sm:justify-between sm:gap-3">
                   <p className="nv-title text-xl font-bold">{item.title}</p>
                   <span className="shrink-0 rounded-full bg-[var(--nv-laranja-claro)] px-3 py-1 text-[15px] font-semibold text-[var(--nv-laranja)]">
                     {item.tag}
@@ -941,7 +948,7 @@ function BoraAlinhar() {
   return (
     <section className="px-4 py-16 sm:py-24">
       <div className="mx-auto grid max-w-[1350px] items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
-        <div>
+        <div className="text-center lg:text-left">
           <div className="nv-reveal">
             <Pill>
               <MessageCircleHeart className="size-4" />
@@ -951,13 +958,13 @@ function BoraAlinhar() {
           <h2 className="nv-reveal nv-title mt-6 text-[2.1rem] font-bold sm:text-5xl">
             Ninguém rebate por mensagem. A pessoa escolhe o <Mark>próximo passo.</Mark>
           </h2>
-          <p className="nv-reveal mt-5 max-w-xl text-xl leading-relaxed text-[var(--nv-texto)]">
+          <p className="nv-reveal mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[var(--nv-texto)] sm:text-xl lg:mx-0">
             Quem recebe o feedback não responde por texto, pra conversa não virar bate-boca. Toca numa das quatro
             reações e o líder já sabe o que acontece depois.
           </p>
 
           <ul
-            className="nv-reveal mt-8 space-y-2"
+            className="nv-reveal mt-8 space-y-2 text-left"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
@@ -998,7 +1005,7 @@ function BoraAlinhar() {
           </ul>
         </div>
 
-        <Stage tone="laranja" className="nv-reveal min-h-[480px] flex-col gap-4">
+        <Stage tone="laranja" className="nv-reveal min-h-[400px] flex-col gap-4 sm:min-h-[480px]">
           <ReactionsCard active={active} note={`${current.note} · agora`} className="w-full max-w-[21rem]" />
           <div
             key={active}
@@ -1045,15 +1052,15 @@ function LeadForm() {
   }
 
   const field =
-    "mt-1.5 h-13 w-full rounded-xl border border-[var(--nv-linha)] bg-[var(--nv-creme)] px-4 text-lg text-[var(--nv-tinta)] placeholder:text-[var(--nv-texto)]/50 outline-none transition-colors focus:border-[var(--nv-roxo)] focus:bg-white";
+    "mt-2 h-14 w-full rounded-xl border border-[#f1dcc9] bg-white px-4 text-lg text-[var(--nv-tinta)] placeholder:text-[#a79d97] outline-none transition-colors focus:border-[var(--nv-laranja)]";
   const label = "text-[15px] font-semibold text-[var(--nv-tinta)]";
   const card =
-    "rounded-[2rem] bg-white p-6 text-[var(--nv-tinta)] shadow-[0_40px_80px_-40px_rgba(51,0,77,0.55)] sm:p-9";
+    "rounded-[1.75rem] bg-white p-5 text-[var(--nv-tinta)] shadow-[0_30px_60px_-30px_rgba(120,50,10,0.45)] sm:p-8";
 
   if (status === "sent") {
     return (
-      <div className={cn(card, "flex min-h-[460px] flex-col items-center justify-center text-center")}>
-        <span className="flex size-14 items-center justify-center rounded-full bg-[var(--nv-laranja)] text-white">
+      <div className={cn(card, "flex min-h-[520px] flex-col items-center justify-center text-center")}>
+        <span className="flex size-14 items-center justify-center rounded-full bg-[var(--nv-roxo-noite)] text-white">
           <Check className="size-7" strokeWidth={3} />
         </span>
         <p className="nv-title mt-5 text-3xl font-bold">Recebemos, {lead.nome.split(" ")[0]}.</p>
@@ -1077,29 +1084,17 @@ function LeadForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className={card}>
-      <p className="nv-title text-2xl font-bold">Quero ver a UPtoME no meu time</p>
-      <p className="mt-1 text-[17px] text-[var(--nv-texto)]">Menos de 1 minuto. A resposta vem pelo WhatsApp.</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <p className="text-lg sm:text-xl font-semibold">Quero ver no meu time</p>
+      <div className="mt-5 space-y-4">
         <label className="block">
-          <span className={label}>Nome</span>
+          <span className={label}>Nome completo</span>
           <input
             className={field}
             name="nome"
             autoComplete="name"
-            placeholder="Nome e sobrenome"
+            placeholder="Seu nome e sobrenome"
             value={lead.nome}
             onChange={(e) => update("nome", e.target.value)}
-          />
-        </label>
-        <label className="block">
-          <span className={label}>Empresa</span>
-          <input
-            className={field}
-            name="empresa"
-            autoComplete="organization"
-            placeholder="Nome da empresa"
-            value={lead.empresa}
-            onChange={(e) => update("empresa", e.target.value)}
           />
         </label>
         <label className="block">
@@ -1115,122 +1110,129 @@ function LeadForm() {
             onChange={(e) => update("whatsapp", formatWhatsapp(e.target.value))}
           />
         </label>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <label className="block">
+            <span className={label}>Empresa</span>
+            <input
+              className={field}
+              name="empresa"
+              autoComplete="organization"
+              placeholder="Nome da empresa"
+              value={lead.empresa}
+              onChange={(e) => update("empresa", e.target.value)}
+            />
+          </label>
+          <label className="block">
+            <span className={label}>Cargo (opcional)</span>
+            <input
+              className={field}
+              name="cargo"
+              autoComplete="organization-title"
+              placeholder="Ex.: dona, RH"
+              value={lead.cargo}
+              onChange={(e) => update("cargo", e.target.value)}
+            />
+          </label>
+        </div>
         <label className="block">
-          <span className={label}>Cargo</span>
-          <input
-            className={field}
-            name="cargo"
-            autoComplete="organization-title"
-            placeholder="Ex.: dona, gerente de RH"
-            value={lead.cargo}
-            onChange={(e) => update("cargo", e.target.value)}
-          />
+          <span className={label}>Quantas pessoas trabalham aí?</span>
+          <span className="relative block">
+            <select
+              className={cn(field, "appearance-none pr-12", !lead.colaboradores && "text-[#a79d97]")}
+              name="colaboradores"
+              value={lead.colaboradores}
+              onChange={(e) => update("colaboradores", e.target.value)}
+            >
+              <option value="" disabled>
+                Escolha uma faixa
+              </option>
+              {collaboratorRanges.map((range) => (
+                <option key={range} value={range} className="text-[var(--nv-tinta)]">
+                  {range}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute top-1/2 right-4 mt-1 size-5 -translate-y-1/2 text-[var(--nv-laranja)]" />
+          </span>
         </label>
       </div>
-      <fieldset className="mt-5 rounded-2xl bg-[var(--nv-creme)] p-4">
-        <legend className="sr-only">Quantas pessoas trabalham na empresa</legend>
-        <p className={label} aria-hidden>
-          Quantas pessoas trabalham aí?
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {collaboratorRanges.map((range) => {
-            const on = lead.colaboradores === range;
-            return (
-              <button
-                key={range}
-                type="button"
-                onClick={() => update("colaboradores", range)}
-                aria-pressed={on}
-                className={cn(
-                  "h-10 rounded-full border px-4 text-[16px] font-medium transition-colors",
-                  on
-                    ? "border-[var(--nv-roxo)] bg-[var(--nv-roxo)] text-white"
-                    : "border-[var(--nv-linha)] bg-white text-[var(--nv-tinta)] hover:border-[var(--nv-roxo)]/40",
-                )}
-              >
-                {range}
-              </button>
-            );
-          })}
-        </div>
-      </fieldset>
       {error ? (
-        <p role="alert" className="mt-4 rounded-xl bg-[var(--nv-laranja-claro)] px-4 py-2.5 text-[16px] text-[var(--nv-tinta)]">
+        <p role="alert" className="mt-4 rounded-xl bg-[var(--nv-laranja-claro)] px-4 py-2.5 text-[16px]">
           {error}
         </p>
       ) : null}
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--nv-roxo-noite)] text-xl font-semibold text-white transition-colors hover:bg-[var(--nv-roxo)] disabled:opacity-70"
+        className="mt-6 flex h-15 w-full items-center justify-center gap-2 rounded-full bg-[var(--nv-roxo-noite)] px-4 py-4 text-base font-semibold whitespace-nowrap sm:text-lg text-white transition-colors hover:bg-[var(--nv-roxo)] disabled:opacity-70"
       >
         {status === "sending" ? "Enviando..." : "Quero minha demonstração"}
         <ArrowRight className="size-5" />
       </button>
-      <p className="mt-3 text-center text-[14px] text-[var(--nv-texto)]">
-        Sem compromisso. Seus dados só são usados pra esse contato.
+      <p className="mt-3 text-center text-[14px] text-[#a79d97]">
+        Sem compromisso. Você só contrata se fizer sentido.
       </p>
     </form>
   );
 }
 
+const offerBullets = [
+  { icon: MessageCircle, text: "Atendimento pelo WhatsApp" },
+  { icon: CalendarCheck, text: "Demonstração de 30 minutos no seu contexto" },
+  { icon: Lock, text: "Seus dados ficam só com a UPtoME" },
+] as const;
+
 function Offer() {
   return (
     <section id="contato" className="scroll-mt-20 px-3 py-12 sm:px-4 sm:py-20">
-      <div
-        className="nv-reveal relative mx-auto grid max-w-[1350px] gap-10 overflow-hidden rounded-[2.5rem] p-6 sm:p-10 lg:grid-cols-[1fr_1fr] lg:p-14"
-        style={{
-          background:
-            "repeating-radial-gradient(circle at 100% 100%, rgba(255,255,255,0.22) 0 1px, transparent 1px 34px), linear-gradient(140deg, #fdeee4 0%, #fbc59f 45%, #f08a4b 80%, #e3540e 100%)",
-        }}
-      >
-        <div className="flex flex-col">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[var(--nv-roxo-noite)] px-4 py-1.5 text-[14px] font-medium text-white">
-            <CalendarCheck className="size-4" />
-            Demonstração sem compromisso
-          </span>
-          <h2 className="nv-title mt-6 text-[2.2rem] font-bold text-[var(--nv-tinta)] sm:text-5xl lg:text-[3.3rem]">
-            Veja a UPtoME funcionando{" "}
-            <span className="rounded-lg bg-[var(--nv-roxo-noite)] px-2 text-[#ffb489] [box-decoration-break:clone]">
-              no seu time.
-            </span>
-          </h2>
-          <p className="mt-5 max-w-xl text-xl leading-relaxed text-[var(--nv-tinta)]/80">
-            Deixa seu contato. A gente te chama no WhatsApp, entende a sua realidade e mostra a ferramenta rodando.
-          </p>
-
-          <div className="mt-8 space-y-3">
-            {offerRows.map((row) => (
-              <div
-                key={row.title}
-                className="flex items-center gap-4 rounded-2xl bg-white/85 px-5 py-4 shadow-[0_10px_30px_-20px_rgba(51,0,77,0.4)] backdrop-blur"
+      <div className="relative mx-auto max-w-[1350px]">
+        {/* mini cards que escapam do painel, como na referência */}
+        <div className="absolute top-10 -left-4 z-10 hidden w-44 -rotate-6 rounded-2xl bg-white p-4 shadow-[0_20px_40px_-20px_rgba(120,50,10,0.45)] xl:block">
+          <p className="text-[13px] font-semibold">Próxima demo</p>
+          <div className="mt-3 grid grid-cols-3 gap-1.5">
+            {["22", "23", "24", "25", "26", "29"].map((d, i) => (
+              <span
+                key={d}
+                className={cn(
+                  "flex h-7 items-center justify-center rounded-md text-[12px] font-medium",
+                  i === 2 ? "bg-[var(--nv-roxo-noite)] text-white" : "bg-[var(--nv-creme)]",
+                )}
               >
-                <div className="flex-1">
-                  <p className="text-lg font-semibold text-[var(--nv-tinta)]">{row.title}</p>
-                  <p className="text-[16px] leading-snug text-[var(--nv-texto)]">{row.description}</p>
-                </div>
-                <span className="border-l border-[var(--nv-laranja)]/40 pl-4 text-[15px] font-semibold whitespace-nowrap text-[var(--nv-laranja)]">
-                  {row.tag}
-                </span>
-              </div>
+                {d}
+              </span>
             ))}
           </div>
-
-          <div className="relative mt-4 hidden overflow-hidden rounded-3xl sm:block lg:mt-auto lg:translate-y-4">
-            <img
-              src={fotoDemonstracao}
-              alt="Dona de clínica e gerente sorrindo diante do celular"
-              loading="lazy"
-              className="aspect-[16/9] w-full object-cover"
-            />
-            <span className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[14px] font-semibold text-[var(--nv-tinta)] shadow-lg">
-              <Check className="size-4 text-[var(--nv-laranja)]" strokeWidth={3} />
-              Leva menos de 1 minuto
-            </span>
-          </div>
+        </div>
+        <div className="absolute -right-4 bottom-16 z-10 hidden w-44 rotate-6 space-y-2 rounded-2xl bg-white p-4 shadow-[0_20px_40px_-20px_rgba(120,50,10,0.45)] xl:block">
+          <p className="text-[13px] font-semibold">Feedback gerado</p>
+          <span className="block h-5 rounded-md bg-[var(--nv-creme)]" />
+          <span className="block h-5 rounded-md bg-[var(--nv-creme)]" />
+          <span className="block h-5 w-2/3 rounded-md bg-[var(--nv-laranja-claro)]" />
         </div>
 
-        <div className="lg:self-center">
+        <div
+          className="nv-reveal relative grid items-center gap-10 overflow-hidden rounded-[2rem] border border-[#f0b88f] px-4 py-8 sm:rounded-[2.5rem] sm:p-10 lg:grid-cols-[1.05fr_1fr] lg:px-16 lg:py-16"
+          style={{ background: "linear-gradient(180deg, #ffdcc3 0%, #ffc49b 50%, #ffa566 100%)" }}
+        >
+          <div className="text-center lg:text-left">
+            <h2 className="nv-title text-[2.3rem] font-bold text-[var(--nv-tinta)] sm:text-5xl lg:text-[3.6rem]">
+              Veja a UPtoME funcionando{" "}
+              <span className="rounded-lg bg-[var(--nv-roxo-noite)] px-2.5 text-[#ffb489] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                no seu time.
+              </span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[var(--nv-tinta)]/75 sm:text-xl lg:mx-0">
+              Deixa seu nome e o WhatsApp. A gente te chama, entende a sua realidade e mostra a ferramenta rodando.
+            </p>
+            <ul className="mx-auto mt-8 w-fit space-y-3 text-left lg:mx-0">
+              {offerBullets.map(({ icon: Icon, text }) => (
+                <li key={text} className="flex items-center gap-3 text-lg font-medium text-[var(--nv-tinta)]">
+                  <Icon className="size-5 shrink-0" strokeWidth={2} />
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
           <LeadForm />
         </div>
       </div>
@@ -1247,13 +1249,13 @@ function Faq() {
   return (
     <section id="duvidas" className="scroll-mt-24 px-4 py-16 sm:py-24">
       <div className="mx-auto grid max-w-[1350px] gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="nv-reveal">
+        <div className="nv-reveal text-center lg:text-left">
           <h2 className="nv-title text-5xl font-bold sm:text-6xl">
             Perguntas
             <br />
             <span className="bg-[linear-gradient(transparent_62%,var(--nv-lilas-forte)_62%)]">frequentes</span>
           </h2>
-          <p className="mt-6 max-w-sm text-xl text-[var(--nv-texto)]">
+          <p className="mx-auto mt-6 max-w-sm text-lg text-[var(--nv-texto)] sm:text-xl lg:mx-0">
             Ficou alguma dúvida que não está aqui? A gente responde no WhatsApp, com gente de verdade do outro lado.
           </p>
           <Cta size="lg" className="mt-8" local="faq">
@@ -1276,7 +1278,7 @@ function Faq() {
                     type="button"
                     onClick={() => setOpen(on ? null : i)}
                     aria-expanded={on}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-xl font-medium sm:px-6"
+                    className="flex w-full items-center justify-between gap-4 px-4 py-5 text-left text-lg font-medium sm:px-6 sm:text-xl"
                   >
                     {item.question}
                     <span
@@ -1300,7 +1302,7 @@ function Faq() {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <p className="max-w-2xl px-5 pb-7 text-xl leading-relaxed text-[var(--nv-texto)] sm:px-6">
+                      <p className="max-w-2xl px-5 pb-7 text-lg sm:text-xl leading-relaxed text-[var(--nv-texto)] sm:px-6">
                         {item.answer}
                       </p>
                     </div>
@@ -1330,7 +1332,7 @@ function FinalCta() {
           <div className="mt-9">
             <Cta variant="roxo" local="final" />
           </div>
-          <p className="mt-6 text-xl text-[var(--nv-texto)]">
+          <p className="mt-6 text-lg sm:text-xl text-[var(--nv-texto)]">
             Resposta pelo WhatsApp. Demonstração sem compromisso.
           </p>
         </div>
@@ -1345,7 +1347,7 @@ function Footer() {
   return (
     <footer className="px-4 pb-28 sm:pb-10">
       <div className="mx-auto flex max-w-[1350px] flex-col items-center justify-between gap-5 rounded-3xl border border-[var(--nv-tinta)]/15 bg-white px-6 py-6 sm:flex-row sm:px-8">
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:gap-4 sm:text-left">
           <img src={logotipoUptome} alt="UPtoME" className="h-10 w-auto" />
           <span className="hidden h-6 w-px bg-[var(--nv-linha)] sm:block" />
           <span className="text-base text-[var(--nv-texto)]">© 2026 UPtoME. Desenvolvimento de pessoas centrado em feedback.</span>
