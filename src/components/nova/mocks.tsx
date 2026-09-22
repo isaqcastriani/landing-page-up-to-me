@@ -24,7 +24,7 @@ export function MockFrame({
     >
       {title ? (
         <div className="flex items-center justify-between border-b border-[var(--nv-linha)] px-4 py-2.5">
-          <span className="text-[11px] font-semibold tracking-wide text-[var(--nv-texto)]">{title}</span>
+          <span className="text-[12.5px] font-semibold tracking-wide text-[var(--nv-texto)]">{title}</span>
           <span className="flex gap-1">
             <span className="size-1.5 rounded-full bg-[var(--nv-linha)]" />
             <span className="size-1.5 rounded-full bg-[var(--nv-linha)]" />
@@ -56,16 +56,16 @@ export function Waveform({ bars = 28, className }: { bars?: number; className?: 
 
 export function AudioBubble({ className }: { className?: string }) {
   return (
-    <MockFrame className={cn("w-64 p-3.5", className)}>
-      <p className="text-[11px] font-semibold text-[var(--nv-texto)]">Líder · Loja Centro</p>
+    <MockFrame className={cn("w-72 p-3.5", className)}>
+      <p className="text-[12.5px] font-semibold text-[var(--nv-texto)]">Líder · Loja Centro</p>
       <div className="mt-2 flex items-center gap-3 rounded-xl bg-[var(--nv-lilas)] px-3 py-2.5 text-[var(--nv-roxo)]">
         <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[var(--nv-roxo)] text-white">
           <Mic className="size-4" strokeWidth={2.2} />
         </span>
         <Waveform bars={22} />
-        <span className="text-[11px] font-semibold tabular-nums">0:42</span>
+        <span className="text-[12.5px] font-semibold tabular-nums">0:42</span>
       </div>
-      <p className="mt-2 text-[11px] leading-snug text-[var(--nv-texto)]">
+      <p className="mt-2 text-[12.5px] leading-snug text-[var(--nv-texto)]">
         &ldquo;De novo atrasado? Assim não dá...&rdquo;
       </p>
     </MockFrame>
@@ -87,7 +87,7 @@ const feedbackBlocks = [
 
 export function FeedbackCard({ className, compact = false }: { className?: string; compact?: boolean }) {
   return (
-    <MockFrame className={cn("w-72", className)} title="Feedback gerado">
+    <MockFrame className={cn("w-80", className)} title="Feedback gerado">
       <div className={cn("space-y-2.5 p-4", compact && "space-y-2 p-3.5")}>
         {feedbackBlocks.map((block, i) => (
           <div key={block.label} className="flex gap-2.5">
@@ -98,10 +98,10 @@ export function FeedbackCard({ className, compact = false }: { className?: strin
               )}
             />
             <div>
-              <p className="text-[10px] font-bold tracking-[0.08em] text-[var(--nv-roxo)] uppercase">
+              <p className="text-[11px] font-bold tracking-[0.08em] text-[var(--nv-roxo)] uppercase">
                 {block.label}
               </p>
-              <p className="text-[12px] leading-snug text-[var(--nv-tinta)]">{block.text}</p>
+              <p className="text-[13.5px] leading-snug text-[var(--nv-tinta)]">{block.text}</p>
             </div>
           </div>
         ))}
@@ -116,8 +116,8 @@ export function GeneratingCard({ className }: { className?: string }) {
       <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-[var(--nv-lilas)] text-[var(--nv-roxo)]">
         <Sparkles className="size-5" />
       </span>
-      <p className="mt-3 text-sm font-semibold">Gerando feedback</p>
-      <p className="mt-1 text-[11px] text-[var(--nv-texto)]">Considerando o perfil da Camila</p>
+      <p className="mt-3 text-base font-semibold">Gerando feedback</p>
+      <p className="mt-1 text-[12.5px] text-[var(--nv-texto)]">Considerando o perfil da Camila</p>
       <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[var(--nv-lilas)]">
         <div className="h-full w-2/3 rounded-full bg-[var(--nv-laranja)]" />
       </div>
@@ -136,10 +136,10 @@ export function FeedbackOfFeedback({ className }: { className?: string }) {
       <ul className="space-y-2 p-4">
         {items.map((item) => (
           <li key={item.cut} className="rounded-xl bg-[var(--nv-creme)] px-3 py-2">
-            <p className="text-[12px] font-semibold text-[var(--nv-laranja)] line-through decoration-2">
+            <p className="text-[13.5px] font-semibold text-[var(--nv-laranja)] line-through decoration-2">
               {item.cut}
             </p>
-            <p className="text-[11px] text-[var(--nv-texto)]">{item.why}</p>
+            <p className="text-[12.5px] text-[var(--nv-texto)]">{item.why}</p>
           </li>
         ))}
       </ul>
@@ -152,22 +152,22 @@ export function ProfileCard({ className }: { className?: string }) {
     <MockFrame className={cn("w-full", className)} title="Como falar com a Camila">
       <div className="p-4">
         <div className="flex items-center gap-3">
-          <span className="flex size-9 items-center justify-center rounded-full bg-[var(--nv-laranja)] text-sm font-bold text-white">
+          <span className="flex size-9 items-center justify-center rounded-full bg-[var(--nv-laranja)] text-base font-bold text-white">
             C
           </span>
           <div>
-            <p className="text-[13px] font-semibold">Camila · Atendimento</p>
-            <p className="text-[11px] text-[var(--nv-texto)]">Decide rápido, gosta de objetivo claro</p>
+            <p className="text-[14.5px] font-semibold">Camila · Atendimento</p>
+            <p className="text-[12.5px] text-[var(--nv-texto)]">Decide rápido, gosta de objetivo claro</p>
           </div>
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2">
           <div className="rounded-xl bg-[var(--nv-lilas)] p-2.5">
-            <p className="text-[10px] font-bold tracking-[0.08em] text-[var(--nv-roxo)] uppercase">Funciona</p>
-            <p className="mt-1 text-[11px] leading-snug">&ldquo;meta&rdquo;, &ldquo;resultado&rdquo;, &ldquo;prazo&rdquo;</p>
+            <p className="text-[11px] font-bold tracking-[0.08em] text-[var(--nv-roxo)] uppercase">Funciona</p>
+            <p className="mt-1 text-[12.5px] leading-snug">&ldquo;meta&rdquo;, &ldquo;resultado&rdquo;, &ldquo;prazo&rdquo;</p>
           </div>
           <div className="rounded-xl bg-[var(--nv-laranja-claro)] p-2.5">
-            <p className="text-[10px] font-bold tracking-[0.08em] text-[var(--nv-laranja)] uppercase">Evite</p>
-            <p className="mt-1 text-[11px] leading-snug">rodeios, &ldquo;depois a gente vê&rdquo;</p>
+            <p className="text-[11px] font-bold tracking-[0.08em] text-[var(--nv-laranja)] uppercase">Evite</p>
+            <p className="mt-1 text-[12.5px] leading-snug">rodeios, &ldquo;depois a gente vê&rdquo;</p>
           </div>
         </div>
       </div>
@@ -186,13 +186,13 @@ export function ReactionsCard({ className, active = 1 }: { className?: string; a
   return (
     <MockFrame className={cn("w-full", className)} title="Camila recebeu seu feedback">
       <div className="p-4">
-        <p className="text-[11px] text-[var(--nv-texto)]">Como ela reagiu</p>
+        <p className="text-[12.5px] text-[var(--nv-texto)]">Como ela reagiu</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {reactions.map((reaction, i) => (
             <span
               key={reaction}
               className={cn(
-                "rounded-full border px-2.5 py-1 text-[11px] font-medium",
+                "rounded-full border px-2.5 py-1 text-[12.5px] font-medium",
                 i === active
                   ? "border-[var(--nv-roxo)] bg-[var(--nv-roxo)] text-white"
                   : "border-[var(--nv-linha)] text-[var(--nv-tinta)]",
@@ -204,7 +204,7 @@ export function ReactionsCard({ className, active = 1 }: { className?: string; a
         </div>
         <div className="mt-3 flex items-center gap-2 rounded-xl bg-[var(--nv-creme)] px-3 py-2">
           <Check className="size-3.5 text-[var(--nv-roxo)]" strokeWidth={3} />
-          <p className="text-[11px]">Plano de ação criado · 22/09, 10:14</p>
+          <p className="text-[12.5px]">Plano de ação criado · 22/09, 10:14</p>
         </div>
       </div>
     </MockFrame>
@@ -260,7 +260,7 @@ export function NetworkMock({ className }: { className?: string }) {
       {people.map((p) => (
         <span
           key={p.n}
-          className="absolute flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-[var(--nv-lilas)] text-sm font-bold text-[var(--nv-roxo)] shadow-md"
+          className="absolute flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-[var(--nv-lilas)] text-base font-bold text-[var(--nv-roxo)] shadow-md"
           style={{ left: `${p.x}%`, top: `${p.y}%` }}
         >
           {p.n}
@@ -283,10 +283,10 @@ export function ReportMock({ className }: { className?: string }) {
   ];
   return (
     <div className={cn("w-full space-y-3", className)}>
-      <p className="text-[11px] font-semibold text-[var(--nv-texto)]">Feedbacks no mês, por área</p>
+      <p className="text-[12.5px] font-semibold text-[var(--nv-texto)]">Feedbacks no mês, por área</p>
       {rows.map((row, i) => (
         <div key={row.area}>
-          <div className="flex justify-between text-[12px]">
+          <div className="flex justify-between text-[13.5px]">
             <span>{row.area}</span>
             <span className="font-semibold tabular-nums">{Math.round(row.value / 4)}</span>
           </div>
@@ -301,7 +301,7 @@ export function ReportMock({ className }: { className?: string }) {
           </div>
         </div>
       ))}
-      <p className="rounded-xl bg-[var(--nv-laranja-claro)] px-3 py-2 text-[11px] text-[var(--nv-tinta)]">
+      <p className="rounded-xl bg-[var(--nv-laranja-claro)] px-3 py-2 text-[12.5px] text-[var(--nv-tinta)]">
         O Financeiro está há 40 dias sem feedback registrado.
       </p>
     </div>
@@ -311,8 +311,8 @@ export function ReportMock({ className }: { className?: string }) {
 export function PhoneLoginMock({ className }: { className?: string }) {
   return (
     <div className={cn("mx-auto w-full max-w-[260px] space-y-3", className)}>
-      <p className="text-center text-[13px] font-semibold">Entrar na UPtoME</p>
-      <div className="rounded-xl border border-[var(--nv-linha)] px-3 py-2.5 text-[12px] text-[var(--nv-texto)]">
+      <p className="text-center text-[14.5px] font-semibold">Entrar na UPtoME</p>
+      <div className="rounded-xl border border-[var(--nv-linha)] px-3 py-2.5 text-[13.5px] text-[var(--nv-texto)]">
         (11) 98765-4321
       </div>
       <div className="flex justify-center gap-1.5">
@@ -320,7 +320,7 @@ export function PhoneLoginMock({ className }: { className?: string }) {
           <span
             key={i}
             className={cn(
-              "flex size-8 items-center justify-center rounded-lg border text-sm font-semibold",
+              "flex size-8 items-center justify-center rounded-lg border text-base font-semibold",
               d ? "border-[var(--nv-roxo)] text-[var(--nv-roxo)]" : "border-[var(--nv-linha)]",
             )}
           >
@@ -328,7 +328,7 @@ export function PhoneLoginMock({ className }: { className?: string }) {
           </span>
         ))}
       </div>
-      <p className="text-center text-[11px] text-[var(--nv-texto)]">Código enviado por SMS. Sem e-mail.</p>
+      <p className="text-center text-[12.5px] text-[var(--nv-texto)]">Código enviado por SMS. Sem e-mail.</p>
     </div>
   );
 }

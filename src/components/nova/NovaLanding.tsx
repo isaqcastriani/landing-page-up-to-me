@@ -127,7 +127,7 @@ function Cta({
       }}
       className={cn(
         "group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--nv-roxo)]",
-        size === "lg" ? "h-14 px-8 text-lg sm:h-16 sm:px-10 sm:text-xl" : "h-10 px-5 text-sm",
+        size === "lg" ? "h-14 px-8 text-xl sm:h-16 sm:px-10 sm:text-2xl" : "h-10 px-5 text-base",
         variant === "laranja" &&
           "bg-[var(--nv-laranja)] text-white shadow-[0_14px_30px_-12px_rgba(227,84,14,0.75)] hover:bg-[#cc4a0b]",
         variant === "roxo" && "bg-[var(--nv-roxo)] text-white hover:bg-[var(--nv-roxo-escuro)]",
@@ -158,7 +158,7 @@ function Pill({ children, dark = false }: { children: ReactNode; dark?: boolean 
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[13px] font-medium",
+        "inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[15px] font-medium",
         dark
           ? "border border-white/20 text-white/90"
           : "bg-[var(--nv-roxo-noite)] text-white shadow-[0_8px_20px_-10px_rgba(30,6,48,0.8)]",
@@ -177,7 +177,7 @@ function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed inset-x-0 top-3 z-50 px-3 sm:top-4">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between rounded-full border border-white/70 bg-white/80 pr-2 pl-5 shadow-[0_10px_40px_-20px_rgba(51,0,77,0.35)] backdrop-blur-xl sm:pl-7">
+      <div className="mx-auto flex h-16 max-w-[1350px] items-center justify-between rounded-full border border-white/70 bg-white/80 pr-2 pl-5 shadow-[0_10px_40px_-20px_rgba(51,0,77,0.35)] backdrop-blur-xl sm:pl-7">
         <a href="#topo" aria-label="UPtoME, voltar ao topo" className="flex items-center gap-2">
           <img src={simbolo} alt="" className="h-8 w-auto" />
           <span className="nv-title text-xl font-semibold text-[#6f6a73]" style={{ letterSpacing: "-0.02em" }}>
@@ -189,7 +189,7 @@ function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-[15px] text-[var(--nv-texto)] transition-colors hover:text-[var(--nv-roxo)]"
+              className="text-[17px] text-[var(--nv-texto)] transition-colors hover:text-[var(--nv-roxo)]"
             >
               {item.label}
             </a>
@@ -211,18 +211,18 @@ function Header() {
         </div>
       </div>
       {open ? (
-        <div className="mx-auto mt-2 max-w-5xl rounded-3xl border border-[var(--nv-linha)] bg-white p-3 shadow-xl md:hidden">
+        <div className="mx-auto mt-2 max-w-[1350px] rounded-3xl border border-[var(--nv-linha)] bg-white p-3 shadow-xl md:hidden">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block rounded-2xl px-4 py-3 text-base font-medium text-[var(--nv-tinta)] hover:bg-[var(--nv-lilas)]"
+              className="block rounded-2xl px-4 py-3 text-lg font-medium text-[var(--nv-tinta)] hover:bg-[var(--nv-lilas)]"
             >
               {item.label}
             </a>
           ))}
-          <Cta size="sm" className="mt-2 h-12 w-full text-base" local="menu-mobile" onClick={() => setOpen(false)}>
+          <Cta size="sm" className="mt-2 h-12 w-full text-lg" local="menu-mobile" onClick={() => setOpen(false)}>
             Falar com a gente
           </Cta>
         </div>
@@ -268,7 +268,7 @@ function Vsl() {
           type="button"
           onClick={toggleSound}
           className={cn(
-            "absolute inset-x-4 bottom-4 flex h-12 items-center justify-center gap-2 rounded-full text-[15px] font-semibold backdrop-blur-md transition-colors",
+            "absolute inset-x-4 bottom-4 flex h-12 items-center justify-center gap-2 rounded-full text-[17px] font-semibold backdrop-blur-md transition-colors",
             soundOn
               ? "bg-white/25 text-white"
               : "bg-[var(--nv-laranja)] text-white shadow-[0_10px_24px_-8px_rgba(227,84,14,0.9)]",
@@ -295,19 +295,19 @@ function Hero() {
         <h1 className="nv-reveal nv-title mt-7 text-[2.45rem] font-bold text-[var(--nv-tinta)] sm:text-6xl lg:text-[4.4rem]">
           Seu líder manda um áudio. A UPtoME devolve um <Mark>feedback</Mark> de verdade.
         </h1>
-        <p className="nv-reveal mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[var(--nv-texto)] sm:text-xl">
+        <p className="nv-reveal mx-auto mt-6 max-w-3xl text-xl leading-relaxed text-[var(--nv-texto)] sm:text-2xl">
           Sem formulário e sem avaliação anual esquecida. A IA reescreve o que o líder disse pensando em quem vai
           receber, <strong className="font-semibold text-[var(--nv-tinta)]">registra tudo e mostra pra ele como falar melhor da próxima vez.</strong>
         </p>
-        <div className="nv-reveal mt-9 flex flex-col items-center">
-          <Cta local="hero" />
-          <span className="-mt-1 rounded-b-2xl bg-[var(--nv-roxo-noite)] px-6 pt-3 pb-2 text-sm font-medium text-white">
+        <div className="nv-reveal mx-auto mt-9 flex w-full max-w-[480px] flex-col">
+          <Cta local="hero" className="relative z-10 w-full" />
+          <span className="-mt-8 rounded-b-[2rem] bg-[var(--nv-roxo-noite)] px-4 pt-10 pb-3 text-center text-lg font-medium text-white">
             Demonstração pelo WhatsApp, sem compromisso
           </span>
         </div>
       </div>
 
-      <div className="relative mx-auto mt-16 max-w-6xl">
+      <div className="relative mx-auto mt-16 max-w-[1350px]">
         <p
           aria-hidden
           className="nv-title pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center text-[21vw] font-extrabold text-[var(--nv-roxo)] opacity-[0.07] select-none lg:text-[15rem]"
@@ -336,7 +336,7 @@ function Hero() {
 function Pains() {
   return (
     <section className="px-4 py-16 sm:py-24">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-[1350px]">
         <SectionTitle className="nv-reveal">
           O treinamento acaba. O líder volta pra rotina e <Mark laranja>trava</Mark> na hora da conversa.
         </SectionTitle>
@@ -353,7 +353,7 @@ function Pains() {
             </article>
           ))}
         </div>
-        <p className="nv-reveal mx-auto mt-10 max-w-2xl text-center text-lg text-[var(--nv-texto)]">
+        <p className="nv-reveal mx-auto mt-10 max-w-3xl text-center text-xl text-[var(--nv-texto)]">
           Não é falta de boa vontade do líder. Ninguém ensina a ter conversa difícil{" "}
           <strong className="text-[var(--nv-tinta)]">no momento em que ela acontece.</strong> É exatamente aí que a
           UPtoME entra.
@@ -387,7 +387,7 @@ function Features() {
       <SectionTitle className="nv-reveal mx-auto max-w-4xl">
         Tudo que o líder precisa pra ter a <Mark>conversa certa</Mark>
       </SectionTitle>
-      <div className="mx-auto mt-12 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto mt-12 grid max-w-[1350px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {features.map((feature, i) => {
           const dark = feature.tone === "escuro";
           return (
@@ -406,7 +406,7 @@ function Features() {
                   className={cn("h-6 w-auto", dark && "brightness-0 invert")}
                 />
                 <h3 className="nv-title mt-4 text-2xl font-bold">{feature.title}</h3>
-                <p className={cn("mt-3 text-[15px] leading-relaxed", dark ? "text-white/75" : "text-[var(--nv-texto)]")}>
+                <p className={cn("mt-3 text-[17px] leading-relaxed", dark ? "text-white/75" : "text-[var(--nv-texto)]")}>
                   <strong className={dark ? "text-white" : "text-[var(--nv-tinta)]"}>{feature.lead}</strong>
                   {feature.description}
                 </p>
@@ -470,12 +470,12 @@ function HowItWorks() {
       <SectionTitle className="nv-reveal">
         Como <Mark>funciona:</Mark>
       </SectionTitle>
-      <p className="nv-reveal mx-auto mt-5 max-w-2xl text-center text-lg text-[var(--nv-texto)]">
+      <p className="nv-reveal mx-auto mt-5 max-w-3xl text-center text-xl text-[var(--nv-texto)]">
         A UPtoME cuida da parte difícil: entender quem vai receber e achar as palavras certas. O líder só precisa
         contar o que aconteceu.
       </p>
 
-      <div className="mx-auto mt-12 grid max-w-6xl items-center gap-8 lg:grid-cols-[1fr_1.1fr]">
+      <div className="mx-auto mt-12 grid max-w-[1350px] items-center gap-8 lg:grid-cols-[1fr_1.1fr]">
         <MockFrame className="nv-reveal h-[340px] w-full sm:h-[380px]" title={`Passo ${active + 1} de ${steps.length}`}>
           <StepVisual index={active} />
         </MockFrame>
@@ -600,25 +600,25 @@ function BeforeAfter() {
               key={item.tema}
               className="w-[86vw] max-w-[400px] shrink-0 snap-center rounded-3xl bg-white p-5 text-[var(--nv-tinta)] sm:p-6"
             >
-              <span className="rounded-full bg-[var(--nv-lilas)] px-3 py-1 text-[12px] font-semibold text-[var(--nv-roxo)]">
+              <span className="rounded-full bg-[var(--nv-lilas)] px-3 py-1 text-[14px] font-semibold text-[var(--nv-roxo)]">
                 {item.tema}
               </span>
-              <p className="mt-5 text-[11px] font-bold tracking-[0.1em] text-[var(--nv-texto)] uppercase">
+              <p className="mt-5 text-[13px] font-bold tracking-[0.1em] text-[var(--nv-texto)] uppercase">
                 O líder mandou
               </p>
-              <p className="mt-2 rounded-2xl rounded-tl-sm bg-[#f1f0ee] px-4 py-3 text-[15px] leading-snug">
+              <p className="mt-2 rounded-2xl rounded-tl-sm bg-[#f1f0ee] px-4 py-3 text-[17px] leading-snug">
                 <Strike text={item.antes} cut={item.riscado} />
               </p>
-              <p className="mt-5 text-[11px] font-bold tracking-[0.1em] text-[var(--nv-roxo)] uppercase">
+              <p className="mt-5 text-[13px] font-bold tracking-[0.1em] text-[var(--nv-roxo)] uppercase">
                 A pessoa recebeu
               </p>
-              <p className="mt-2 rounded-2xl rounded-tr-sm bg-[var(--nv-lilas)] px-4 py-3 text-[15px] leading-relaxed">
+              <p className="mt-2 rounded-2xl rounded-tr-sm bg-[var(--nv-lilas)] px-4 py-3 text-[17px] leading-relaxed">
                 {item.depois}
               </p>
             </article>
           ))}
         </div>
-        <p className="mt-6 px-4 text-center text-[13px] text-white/50">
+        <p className="mt-6 px-4 text-center text-[15px] text-white/50">
           Exemplos ilustrativos. No app, a IA também considera o perfil e o histórico de quem recebe.
         </p>
       </div>
@@ -636,7 +636,7 @@ function Audience() {
       <SectionTitle className="nv-reveal mx-auto max-w-4xl">
         A UPtoME é pra <Mark>quem lidera gente</Mark>
       </SectionTitle>
-      <div className="mx-auto mt-12 grid max-w-6xl gap-4 lg:grid-cols-3">
+      <div className="mx-auto mt-12 grid max-w-[1350px] gap-4 lg:grid-cols-3">
         {audiences.map((a, i) => {
           const dark = a.tone === "escuro";
           return (
@@ -649,10 +649,10 @@ function Audience() {
               style={{ transitionDelay: `${i * 90}ms` }}
             >
               <h3 className="nv-title text-3xl font-bold">{a.title}</h3>
-              <p className={cn("mt-5 text-lg font-semibold", dark ? "text-white" : "text-[var(--nv-tinta)]")}>
+              <p className={cn("mt-5 text-xl font-semibold", dark ? "text-white" : "text-[var(--nv-tinta)]")}>
                 {a.lead}
               </p>
-              <p className={cn("mt-2 text-lg leading-relaxed", dark ? "text-white/75" : "text-[var(--nv-texto)]")}>
+              <p className={cn("mt-2 text-xl leading-relaxed", dark ? "text-white/75" : "text-[var(--nv-texto)]")}>
                 {a.description}
               </p>
               <img
@@ -670,16 +670,16 @@ function Audience() {
         })}
         <article className="nv-reveal flex flex-col rounded-3xl bg-[var(--nv-lilas)] p-8 shadow-[0_20px_50px_-30px_rgba(51,0,77,0.4)] [transition-delay:180ms]">
           <h3 className="nv-title text-3xl font-bold">E pra quem usa</h3>
-          <p className="mt-5 text-lg font-semibold">Se o seu time...</p>
+          <p className="mt-5 text-xl font-semibold">Se o seu time...</p>
           <ul className="mt-3 space-y-2.5">
             {signals.map((s) => (
-              <li key={s} className="flex items-start gap-3 text-lg leading-snug font-medium">
+              <li key={s} className="flex items-start gap-3 text-xl leading-snug font-medium">
                 <span className="mt-2.5 size-2 shrink-0 rounded-full bg-[var(--nv-laranja)]" />
                 {s}
               </li>
             ))}
           </ul>
-          <p className="mt-auto pt-8 text-lg leading-relaxed text-[var(--nv-texto)]">
+          <p className="mt-auto pt-8 text-xl leading-relaxed text-[var(--nv-texto)]">
             Se você já pensou &ldquo;o problema não é o time, é a conversa&rdquo;, é pra você.
           </p>
         </article>
@@ -700,7 +700,7 @@ function Marquee() {
           <span
             key={`${item}-${i}`}
             className={cn(
-              "flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-lg whitespace-nowrap",
+              "flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-xl whitespace-nowrap",
               i % 2
                 ? "border-[var(--nv-lilas-forte)] bg-[var(--nv-lilas)] font-semibold text-[var(--nv-roxo)]"
                 : "border-[var(--nv-linha)] bg-white text-[var(--nv-tinta)]",
@@ -733,17 +733,17 @@ function PlatformAndPeople() {
       <SectionTitle className="nv-reveal">
         Você não leva só a <Mark>ferramenta</Mark>
       </SectionTitle>
-      <p className="nv-reveal mx-auto mt-5 max-w-2xl text-center text-lg text-[var(--nv-texto)]">
+      <p className="nv-reveal mx-auto mt-5 max-w-3xl text-center text-xl text-[var(--nv-texto)]">
         <strong className="text-[var(--nv-tinta)]">Plataforma sozinha não muda cultura. Treinamento sozinho evapora.</strong>{" "}
         A UPtoME junta as duas coisas: a ferramenta pro dia a dia e gente de RH do seu lado.
       </p>
 
-      <div className="mx-auto mt-12 max-w-5xl space-y-4">
+      <div className="mx-auto mt-12 max-w-[1350px] space-y-4">
         <div className="nv-reveal grid gap-8 rounded-3xl border border-[var(--nv-linha)] bg-white p-7 sm:p-10 md:grid-cols-2 md:items-center">
           <div>
             <NumberBadge n="01" />
             <h3 className="nv-title mt-5 text-3xl font-bold">A plataforma</h3>
-            <p className="mt-3 text-lg leading-relaxed text-[var(--nv-texto)]">
+            <p className="mt-3 text-xl leading-relaxed text-[var(--nv-texto)]">
               Tudo que o líder e o RH precisam pra conversa acontecer, virar ação e ficar registrada.
             </p>
           </div>
@@ -751,7 +751,7 @@ function PlatformAndPeople() {
             {platform.map((item) => (
               <li
                 key={item}
-                className="flex items-center gap-3 rounded-xl bg-[var(--nv-roxo-noite)] px-4 py-3 text-[15px] font-medium text-white"
+                className="flex items-center gap-3 rounded-xl bg-[var(--nv-roxo-noite)] px-4 py-3 text-[17px] font-medium text-white"
               >
                 <ArrowRight className="size-4 shrink-0 text-[var(--nv-laranja)]" strokeWidth={2.6} />
                 {item}
@@ -764,7 +764,7 @@ function PlatformAndPeople() {
           <div>
             <NumberBadge n="02" />
             <h3 className="nv-title mt-5 text-3xl font-bold">Gente de RH junto</h3>
-            <p className="mt-3 text-lg leading-relaxed text-[var(--nv-texto)]">
+            <p className="mt-3 text-xl leading-relaxed text-[var(--nv-texto)]">
               A UPtoME nasceu de consultoras que passaram anos treinando liderança e viram o treino evaporar. Elas
               continuam do seu lado depois da venda.
             </p>
@@ -773,7 +773,7 @@ function PlatformAndPeople() {
             {consultancy.map((item) => (
               <li
                 key={item.strong}
-                className="flex items-start gap-3 rounded-xl bg-[var(--nv-roxo-noite)] px-4 py-3.5 text-[15px] leading-snug text-white"
+                className="flex items-start gap-3 rounded-xl bg-[var(--nv-roxo-noite)] px-4 py-3.5 text-[17px] leading-snug text-white"
               >
                 <ArrowRight className="mt-0.5 size-4 shrink-0 text-[var(--nv-laranja)]" strokeWidth={2.6} />
                 <span>
@@ -821,7 +821,7 @@ function PlatformAndPeople() {
 function Coexist() {
   return (
     <section className="px-4 py-12 sm:py-20">
-      <div className="nv-reveal relative mx-auto grid max-w-6xl overflow-hidden rounded-[2.5rem] bg-[var(--nv-lilas)] lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="nv-reveal relative mx-auto grid max-w-[1350px] overflow-hidden rounded-[2.5rem] bg-[var(--nv-lilas)] lg:grid-cols-[0.9fr_1.1fr]">
         <div className="relative min-h-[360px]">
           <img
             src={fotoPiscadela}
@@ -844,7 +844,7 @@ function Coexist() {
               <div key={item.title} className="rounded-2xl bg-white px-5 py-5 sm:px-6">
                 <div className="flex items-center justify-between gap-3">
                   <p className="nv-title text-xl font-bold">{item.title}</p>
-                  <span className="shrink-0 rounded-full bg-[var(--nv-laranja-claro)] px-3 py-1 text-[13px] font-semibold text-[var(--nv-laranja)]">
+                  <span className="shrink-0 rounded-full bg-[var(--nv-laranja-claro)] px-3 py-1 text-[15px] font-semibold text-[var(--nv-laranja)]">
                     {item.tag}
                   </span>
                 </div>
@@ -872,7 +872,7 @@ function BoraAlinhar() {
 
   return (
     <section className="px-4 py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[1350px]">
         <div className="nv-reveal flex flex-wrap items-end justify-between gap-6">
           <h2 className="nv-title text-5xl font-bold sm:text-7xl lg:text-8xl">
             Bora alinhar
@@ -887,7 +887,7 @@ function BoraAlinhar() {
               <span className="flex size-10 items-center justify-center rounded-full border border-[var(--nv-linha)] bg-white text-[var(--nv-texto)]">
                 ?
               </span>
-              <span className="flex size-10 items-center justify-center rounded-full bg-[var(--nv-roxo)] text-sm font-bold text-white">
+              <span className="flex size-10 items-center justify-center rounded-full bg-[var(--nv-roxo)] text-base font-bold text-white">
                 C
               </span>
             </div>
@@ -901,18 +901,18 @@ function BoraAlinhar() {
           </span>
           <div className="flex-1">
             <p className="font-semibold">A Camila escolheu &ldquo;Bora alinhar melhor&rdquo;</p>
-            <p className="text-sm text-[var(--nv-texto)]">
+            <p className="text-base text-[var(--nv-texto)]">
               Feedback de segunda · a conversa agora é ao vivo, e fica registrada
             </p>
           </div>
           <div className="flex gap-2">
-            <span className="rounded-full border border-[var(--nv-linha)] px-4 py-2 text-sm">ver histórico</span>
-            <span className="rounded-full bg-[var(--nv-laranja)] px-4 py-2 text-sm font-semibold text-white">
+            <span className="rounded-full border border-[var(--nv-linha)] px-4 py-2 text-base">ver histórico</span>
+            <span className="rounded-full bg-[var(--nv-laranja)] px-4 py-2 text-base font-semibold text-white">
               Marcar conversa
             </span>
           </div>
         </div>
-        <p className="nv-reveal mt-6 max-w-2xl text-lg text-[var(--nv-texto)]">
+        <p className="nv-reveal mt-6 max-w-3xl text-xl text-[var(--nv-texto)]">
           Quem recebe não responde por texto, pra não virar toma-lá-dá-cá. Escolhe uma reação:{" "}
           {reactions.map((r, i) => (
             <span key={r}>
@@ -959,8 +959,8 @@ function LeadForm() {
   }
 
   const field =
-    "mt-1.5 h-12 w-full rounded-xl border border-white/15 bg-white/[0.07] px-4 text-base text-white placeholder:text-white/40 outline-none transition-colors focus:border-[var(--nv-laranja)] focus:bg-white/10";
-  const label = "text-[12px] font-semibold tracking-[0.12em] text-white/70 uppercase";
+    "mt-1.5 h-12 w-full rounded-xl border border-white/15 bg-white/[0.07] px-4 text-lg text-white placeholder:text-white/40 outline-none transition-colors focus:border-[var(--nv-laranja)] focus:bg-white/10";
+  const label = "text-[14px] font-semibold tracking-[0.12em] text-white/70 uppercase";
 
   if (status === "sent") {
     return (
@@ -1051,7 +1051,7 @@ function LeadForm() {
                 onClick={() => update("colaboradores", range)}
                 aria-pressed={on}
                 className={cn(
-                  "h-11 rounded-full border px-4 text-[15px] font-medium transition-colors",
+                  "h-11 rounded-full border px-4 text-[17px] font-medium transition-colors",
                   on
                     ? "border-[var(--nv-laranja)] bg-[var(--nv-laranja)] text-white"
                     : "border-white/20 text-white/85 hover:border-white/50",
@@ -1064,19 +1064,19 @@ function LeadForm() {
         </div>
       </fieldset>
       {error ? (
-        <p role="alert" className="mt-4 rounded-xl bg-[var(--nv-laranja)]/20 px-4 py-2.5 text-[15px] text-white">
+        <p role="alert" className="mt-4 rounded-xl bg-[var(--nv-laranja)]/20 px-4 py-2.5 text-[17px] text-white">
           {error}
         </p>
       ) : null}
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--nv-laranja)] text-lg font-semibold text-white shadow-[0_14px_30px_-12px_rgba(227,84,14,0.9)] transition-colors hover:bg-[#cc4a0b] disabled:opacity-70"
+        className="mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--nv-laranja)] text-xl font-semibold text-white shadow-[0_14px_30px_-12px_rgba(227,84,14,0.9)] transition-colors hover:bg-[#cc4a0b] disabled:opacity-70"
       >
         {status === "sending" ? "Enviando..." : "Quero minha demonstração"}
         <ArrowRight className="size-5" />
       </button>
-      <p className="mt-3 text-center text-[13px] text-white/50">
+      <p className="mt-3 text-center text-[15px] text-white/50">
         Seus dados só são usados pra esse contato. Sem spam.
       </p>
     </form>
@@ -1086,7 +1086,7 @@ function LeadForm() {
 function Offer() {
   return (
     <section id="contato" className="scroll-mt-20 px-3 py-12 sm:px-4 sm:py-20">
-      <div className="nv-reveal mx-auto grid max-w-6xl gap-10 overflow-hidden rounded-[2.5rem] bg-[radial-gradient(120%_90%_at_0%_0%,#3d0a5c_0%,var(--nv-roxo-noite)_55%)] p-6 text-white sm:p-10 lg:grid-cols-[1fr_1.05fr] lg:p-14">
+      <div className="nv-reveal mx-auto grid max-w-[1350px] gap-10 overflow-hidden rounded-[2.5rem] bg-[radial-gradient(120%_90%_at_0%_0%,#3d0a5c_0%,var(--nv-roxo-noite)_55%)] p-6 text-white sm:p-10 lg:grid-cols-[1fr_1.05fr] lg:p-14">
         <div>
           <h2 className="nv-title text-[2rem] font-bold sm:text-5xl">
             O que você leva quando fala com a{" "}
@@ -1094,7 +1094,7 @@ function Offer() {
           </h2>
           <ul className="mt-8 divide-y divide-white/10 border-y border-white/10">
             {offer.map((item) => (
-              <li key={item} className="flex items-start gap-3 py-4 text-lg">
+              <li key={item} className="flex items-start gap-3 py-4 text-xl">
                 <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-[var(--nv-laranja)]">
                   <Check className="size-3.5" strokeWidth={3.5} />
                 </span>
@@ -1104,7 +1104,7 @@ function Offer() {
           </ul>
           <div className="mt-8 flex items-end gap-4">
             <p className="nv-title text-7xl leading-none font-bold text-[var(--nv-laranja)] sm:text-8xl">30</p>
-            <p className="pb-2 text-lg leading-tight text-white/80">
+            <p className="pb-2 text-xl leading-tight text-white/80">
               minutos de conversa
               <br />
               pra ver se faz sentido pro seu time
@@ -1128,14 +1128,14 @@ function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="duvidas" className="scroll-mt-24 px-4 py-16 sm:py-24">
-      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+      <div className="mx-auto grid max-w-[1350px] gap-12 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="nv-reveal">
           <h2 className="nv-title text-5xl font-bold sm:text-6xl">
             Perguntas
             <br />
             <span className="bg-[linear-gradient(transparent_62%,var(--nv-lilas-forte)_62%)]">frequentes</span>
           </h2>
-          <p className="mt-6 max-w-sm text-lg text-[var(--nv-texto)]">
+          <p className="mt-6 max-w-sm text-xl text-[var(--nv-texto)]">
             Ficou alguma dúvida que não está aqui? A gente responde no WhatsApp, com gente de verdade do outro lado.
           </p>
           <Cta size="lg" className="mt-8" local="faq">
@@ -1152,7 +1152,7 @@ function Faq() {
                   onClick={() => setOpen(on ? null : i)}
                   aria-expanded={on}
                   className={cn(
-                    "flex w-full items-center justify-between gap-4 rounded-2xl px-4 py-5 text-left text-lg font-medium transition-colors sm:px-5",
+                    "flex w-full items-center justify-between gap-4 rounded-2xl px-4 py-5 text-left text-xl font-medium transition-colors sm:px-5",
                     on ? "mt-2 bg-[var(--nv-lilas)]" : "hover:bg-white",
                   )}
                 >
@@ -1167,7 +1167,7 @@ function Faq() {
                   </span>
                 </button>
                 {on ? (
-                  <p className="px-4 pt-3 pb-6 text-lg leading-relaxed text-[var(--nv-texto)] sm:px-5">{item.answer}</p>
+                  <p className="px-4 pt-3 pb-6 text-xl leading-relaxed text-[var(--nv-texto)] sm:px-5">{item.answer}</p>
                 ) : null}
               </div>
             );
@@ -1185,7 +1185,7 @@ function Faq() {
 function FinalCta() {
   return (
     <section className="px-4 pt-10 pb-16 sm:pb-24">
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto max-w-[1350px]">
         <div className="nv-reveal relative z-10 rounded-[2.5rem] bg-[var(--nv-lilas)] px-6 py-14 text-center sm:py-20">
           <h2 className="nv-title mx-auto max-w-2xl text-[2.1rem] font-bold sm:text-5xl lg:text-6xl">
             Você já viu como funciona. Agora é ver no <Mark>seu time.</Mark>
@@ -1193,7 +1193,7 @@ function FinalCta() {
           <div className="mt-9">
             <Cta variant="roxo" local="final" />
           </div>
-          <p className="mt-6 text-lg text-[var(--nv-texto)]">
+          <p className="mt-6 text-xl text-[var(--nv-texto)]">
             Resposta pelo WhatsApp. Demonstração sem compromisso.
           </p>
         </div>
@@ -1207,13 +1207,13 @@ function FinalCta() {
 function Footer() {
   return (
     <footer className="px-4 pb-28 sm:pb-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 rounded-3xl border border-[var(--nv-tinta)]/15 bg-white px-6 py-6 sm:flex-row sm:px-8">
+      <div className="mx-auto flex max-w-[1350px] flex-col items-center justify-between gap-5 rounded-3xl border border-[var(--nv-tinta)]/15 bg-white px-6 py-6 sm:flex-row sm:px-8">
         <div className="flex items-center gap-4">
           <img src={logotipoUptome} alt="UPtoME" className="h-10 w-auto" />
           <span className="hidden h-6 w-px bg-[var(--nv-linha)] sm:block" />
-          <span className="text-sm text-[var(--nv-texto)]">© 2026 UPtoME. Desenvolvimento de pessoas centrado em feedback.</span>
+          <span className="text-base text-[var(--nv-texto)]">© 2026 UPtoME. Desenvolvimento de pessoas centrado em feedback.</span>
         </div>
-        <span className="flex items-center gap-2 rounded-full bg-[var(--nv-roxo-noite)] px-4 py-2 text-sm text-white/80">
+        <span className="flex items-center gap-2 rounded-full bg-[var(--nv-roxo-noite)] px-4 py-2 text-base text-white/80">
           Desenvolvido por <img src={logotipoV4} alt="V4 Company" className="h-5 w-auto" />
         </span>
       </div>
@@ -1247,8 +1247,8 @@ function MobileCtaBar() {
         onClick={() => track("cta_click", { local: "barra-mobile" })}
         className="flex h-14 items-center justify-between rounded-full bg-[var(--nv-roxo-noite)] pr-2 pl-5 text-white shadow-2xl"
       >
-        <span className="text-[15px] font-medium">Ver a UPtoME no meu time</span>
-        <span className="flex h-10 items-center gap-1 rounded-full bg-[var(--nv-laranja)] px-4 text-sm font-semibold">
+        <span className="text-[17px] font-medium">Ver a UPtoME no meu time</span>
+        <span className="flex h-10 items-center gap-1 rounded-full bg-[var(--nv-laranja)] px-4 text-base font-semibold">
           Falar <ArrowUpRight className="size-4" />
         </span>
       </a>
