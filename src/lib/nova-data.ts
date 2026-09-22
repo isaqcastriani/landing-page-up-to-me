@@ -192,12 +192,38 @@ export const coexist = [
   },
 ] as const;
 
-export const offer = [
-  "Demonstração com o produto rodando, no seu contexto",
-  "Plataforma completa: feedback com IA, perfil, PDI e relatórios",
-  "Implantação e acompanhamento por gente de RH",
-  "Login pelo celular pra quem não tem e-mail",
-  "Histórico com autor e data, dados tratados conforme a LGPD",
+export const offerRows = [
+  {
+    title: "Demonstração no seu contexto",
+    description: "Com exemplos do seu tipo de empresa, não um vídeo genérico.",
+    tag: "30 min",
+  },
+  {
+    title: "Plataforma + gente de RH",
+    description: "Implantação e acompanhamento por quem entende de liderança.",
+    tag: "junto",
+  },
+  {
+    title: "Começa na mesma semana",
+    description: "Sem projeto de implantação de meses. Login pelo celular, sem e-mail.",
+    tag: "rápido",
+  },
+] as const;
+
+// O que cada reação faz, na seção "depois do feedback".
+export const reactionSteps = [
+  { reaction: "Foco no objetivo", description: "Entendeu o recado e segue no que foi combinado.", note: "Registrado no histórico" },
+  {
+    reaction: "Vou criar o plano de ação",
+    description: "Abre um plano que entra no quadro de acompanhamento do líder e do RH.",
+    note: "Plano de ação criado",
+  },
+  {
+    reaction: "Bora alinhar melhor",
+    description: "Pede uma conversa ao vivo. A ferramenta abre a porta, a conversa é entre pessoas.",
+    note: "Conversa ao vivo marcada",
+  },
+  { reaction: "Agradeço de verdade", description: "Fecha o ciclo com reconhecimento.", note: "Reconhecimento registrado" },
 ] as const;
 
 export const collaboratorRanges = ["Até 10", "11 a 20", "21 a 50", "51 a 100", "101 a 300", "Mais de 300"] as const;

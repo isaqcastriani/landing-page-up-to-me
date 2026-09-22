@@ -2,7 +2,7 @@
 // Linguagem visual inspirada no Calendly: cada tela é um card branco, limpo e
 // grande, flutuando sobre um "palco" com gradiente suave e listras finas nas
 // laterais. Quando a Paula mandar os prints reais, dá pra trocar por imagem.
-import { Check, ChartColumn, MessageCircleHeart, Mic, Sparkles, UserRound, type LucideIcon } from "lucide-react";
+import { Check, ChartColumn, MessageCircleHeart, MessageSquareText, Mic, PenLine, UserRound, type LucideIcon } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
@@ -84,7 +84,7 @@ export function MockFrame({
   children,
   className,
   title,
-  icon = Sparkles,
+  icon = MessageSquareText,
 }: {
   children: ReactNode;
   className?: string;
@@ -162,7 +162,7 @@ const feedbackBlocks = [
 export function FeedbackCard({ className, compact = false }: { className?: string; compact?: boolean }) {
   const blocks = compact ? feedbackBlocks.filter((_, i) => i !== 2) : feedbackBlocks;
   return (
-    <MockFrame className={cn("w-[21rem]", className)} title="Feedback gerado" icon={Sparkles}>
+    <MockFrame className={cn("w-[21rem]", className)} title="Feedback gerado" icon={MessageSquareText}>
       <ol className="space-y-3 px-5 pt-3 pb-5">
         {blocks.map((block) => {
           const last = block.label === "Pra agir junto";
@@ -193,7 +193,7 @@ export function GeneratingCard({ className }: { className?: string }) {
     <MockFrame className={cn("w-64 px-5 py-5", className)}>
       <div className="flex items-center gap-3">
         <span className="flex size-10 items-center justify-center rounded-xl bg-[var(--nv-lilas)] text-[var(--nv-roxo)]">
-          <Sparkles className="size-5" />
+          <PenLine className="size-5" />
         </span>
         <div className="leading-tight">
           <p className="text-[15px] font-semibold">Gerando feedback</p>
@@ -213,7 +213,7 @@ export function FeedbackOfFeedback({ className }: { className?: string }) {
     <div className={cn("relative w-full max-w-[19rem] pt-6", className)}>
       <div className="absolute inset-x-6 top-0 h-16 rounded-[1.25rem] bg-white/50 shadow-sm" />
       <div className="absolute inset-x-3 top-3 h-16 rounded-[1.25rem] bg-white/75 shadow-sm" />
-      <MockFrame className="relative" title="O que a IA ajustou" icon={Sparkles}>
+      <MockFrame className="relative" title="O que a IA ajustou" icon={PenLine}>
         <div className="px-5 pt-3 pb-5">
           <p className="text-[15px] font-semibold text-[var(--nv-laranja)] line-through decoration-2">
             &ldquo;você nunca leva nada a sério&rdquo;
@@ -273,7 +273,15 @@ export const reactions = [
   "Agradeço de verdade",
 ] as const;
 
-export function ReactionsCard({ className, active = 1 }: { className?: string; active?: number }) {
+export function ReactionsCard({
+  className,
+  active = 1,
+  note = "Plano de ação criado · 22/09, 10:14",
+}: {
+  className?: string;
+  active?: number;
+  note?: string;
+}) {
   return (
     <MockFrame className={cn("w-full max-w-[19rem]", className)} title="A Camila reagiu" icon={MessageCircleHeart}>
       <div className="space-y-1.5 px-5 pt-3 pb-4">
@@ -292,7 +300,7 @@ export function ReactionsCard({ className, active = 1 }: { className?: string; a
       </div>
       <div className="flex items-center gap-2 border-t border-[var(--nv-linha)] px-5 py-3">
         <span className="size-2 rounded-full bg-[var(--nv-laranja)]" />
-        <p className="text-[12.5px] text-[var(--nv-texto)]">Plano de ação criado · 22/09, 10:14</p>
+        <p className="text-[12.5px] text-[var(--nv-texto)]">{note}</p>
       </div>
     </MockFrame>
   );
