@@ -95,7 +95,7 @@ export const beforeAfter = [
     antes: "Para de ficar mandando no Rafael, você não é chefe dele.",
     riscado: ["você não é chefe dele"],
     depois:
-      "Na reunião de ontem, as tarefas do Rafael foram redistribuídas sem conversa com ele. Ele ficou sem saber o que priorizar. A combinação é que cada um organize a própria fila. Como podemos alinhar isso entre vocês dois?",
+      "Na reunião de ontem, as tarefas do Rafael foram redistribuídas sem conversa com ele. Ele ficou sem saber o que priorizar. O combinado é que cada um organize a própria fila. Como podemos alinhar isso entre vocês dois?",
   },
   {
     tema: "Elogio vazio",

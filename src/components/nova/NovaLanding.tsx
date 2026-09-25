@@ -599,6 +599,29 @@ function BeforeAfter() {
     el.scrollBy({ left: direction * Math.min(el.clientWidth * 0.85, 440), behavior: "smooth" });
   }
 
+  // Mobile: um card por vez, com setas e bolinhas abaixo do carrossel.
+  const [current, setCurrent] = useState(0);
+
+  function cards() {
+    return Array.from(track_.current?.children ?? []) as HTMLElement[];
+  }
+
+  function goTo(i: number) {
+    const el = track_.current;
+    const card = cards()[i];
+    if (!el || !card) return;
+    el.scrollTo({ left: card.offsetLeft - 16, behavior: "smooth" });
+  }
+
+  function onTrackScroll() {
+    const el = track_.current;
+    if (!el) return;
+    const list = cards();
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) return setCurrent(list.length - 1);
+    const distance = list.map((card) => Math.abs(card.offsetLeft - 16 - el.scrollLeft));
+    setCurrent(distance.indexOf(Math.min(...distance)));
+  }
+
   return (
     <section className="px-2 py-8 sm:px-4">
       <div className="mx-auto max-w-[1350px] overflow-hidden rounded-[2.5rem] bg-[var(--nv-roxo-noite)] py-16 text-white sm:py-24">
@@ -614,7 +637,7 @@ function BeforeAfter() {
             O que o líder manda. O que a pessoa{" "}
             <span className="text-[var(--nv-laranja)]">recebe.</span>
           </h2>
-          <div className="nv-reveal mt-7 flex justify-center gap-2">
+          <div className="nv-reveal mt-7 hidden justify-center gap-2 sm:flex">
             <button
               type="button"
               onClick={() => scroll(-1)}
@@ -636,12 +659,13 @@ function BeforeAfter() {
 
         <div
           ref={track_}
-          className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:px-10 [&::-webkit-scrollbar]:hidden"
+          onScroll={onTrackScroll}
+          className="relative mt-10 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:scroll-px-0 sm:gap-4 sm:px-10 [&::-webkit-scrollbar]:hidden"
         >
           {beforeAfter.map((item, i) => (
             <article
               key={item.tema}
-              className="flex w-[86vw] max-w-[420px] shrink-0 snap-center flex-col rounded-[2rem] bg-white p-3 text-[var(--nv-tinta)]"
+              className="flex w-[calc(100%-1.5rem)] shrink-0 snap-start flex-col rounded-[2rem] bg-white p-3 text-[var(--nv-tinta)] sm:w-[86vw] sm:max-w-[420px] sm:snap-center"
             >
               <div className="flex items-center justify-between px-3 pt-2 pb-4">
                 <MockLabel icon={MessageCircle}>{item.tema}</MockLabel>
@@ -682,6 +706,40 @@ function BeforeAfter() {
               </Stage>
             </article>
           ))}
+        </div>
+        <div className="mt-4 flex items-center justify-center gap-5 sm:hidden">
+          <button
+            type="button"
+            onClick={() => goTo(current - 1)}
+            disabled={current === 0}
+            aria-label="Exemplo anterior"
+            className="flex size-12 items-center justify-center rounded-full bg-white/10 text-white transition-opacity disabled:opacity-35"
+          >
+            <ChevronLeft className="size-5" />
+          </button>
+          <div className="flex items-center gap-2">
+            {beforeAfter.map((item, i) => (
+              <button
+                key={item.tema}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Exemplo ${i + 1}: ${item.tema}`}
+                className={cn(
+                  "h-2 rounded-full transition-all",
+                  i === current ? "w-6 bg-[var(--nv-laranja)]" : "w-2 bg-white/30",
+                )}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => goTo(current + 1)}
+            disabled={current === beforeAfter.length - 1}
+            aria-label="Próximo exemplo"
+            className="flex size-12 items-center justify-center rounded-full bg-[var(--nv-laranja)] text-white transition-opacity disabled:opacity-35"
+          >
+            <ChevronRight className="size-5" />
+          </button>
         </div>
         <p className="mt-6 px-4 text-center text-[15px] text-white/50">
           Exemplos ilustrativos. No app, a IA também considera o perfil e o histórico de quem recebe.
