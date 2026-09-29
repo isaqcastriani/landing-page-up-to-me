@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AntigaRouteImport } from './routes/antiga'
 import { Route as BRouteImport } from './routes/b'
 import { Route as NovaRouteImport } from './routes/nova'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AntigaRoute = AntigaRouteImport.update({
+  id: '/antiga',
+  path: '/antiga',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BRoute = BRouteImport.update({
@@ -31,30 +37,34 @@ const NovaRoute = NovaRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/antiga': typeof AntigaRoute
   '/b': typeof BRoute
   '/nova': typeof NovaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/antiga': typeof AntigaRoute
   '/b': typeof BRoute
   '/nova': typeof NovaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/antiga': typeof AntigaRoute
   '/b': typeof BRoute
   '/nova': typeof NovaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/b' | '/nova'
+  fullPaths: '/' | '/antiga' | '/b' | '/nova'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/b' | '/nova'
-  id: '__root__' | '/' | '/b' | '/nova'
+  to: '/' | '/antiga' | '/b' | '/nova'
+  id: '__root__' | '/' | '/antiga' | '/b' | '/nova'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AntigaRoute: typeof AntigaRoute
   BRoute: typeof BRoute
   NovaRoute: typeof NovaRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/antiga': {
+      id: '/antiga'
+      path: '/antiga'
+      fullPath: '/antiga'
+      preLoaderRoute: typeof AntigaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/b': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AntigaRoute: AntigaRoute,
   BRoute: BRoute,
   NovaRoute: NovaRoute,
 }

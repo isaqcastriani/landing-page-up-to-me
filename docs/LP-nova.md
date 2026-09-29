@@ -1,4 +1,4 @@
-# LP nova (`/nova`)
+# LP nova (`/`, antes em `/nova`)
 
 Landing page de captura construída sobre a estrutura da referência do Behance
 ("Página de Vendas - Sistema Magnético"), com copy nova para a UPtoME, seguindo

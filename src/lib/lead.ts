@@ -1,4 +1,4 @@
-// Captura de lead da LP nova (/nova).
+// Captura de lead da LP nova (/).
 //
 // Nada aqui depende de backend próprio. O destino do lead é configurado por
 // variáveis de ambiente (Lovable > Project Settings > Environment):

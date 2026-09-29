@@ -1,4 +1,4 @@
-// Copy da LP nova (/nova). Regras do briefing que valem para tudo aqui:
+// Copy da LP nova (/). Regras do briefing que valem para tudo aqui:
 // sem travessão, sem promessa em percentual, sem "garante NR-1", sem logo
 // ou depoimento de cliente até a Paula autorizar.
 
