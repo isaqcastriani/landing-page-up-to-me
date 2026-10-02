@@ -28,7 +28,9 @@ export type Lead = {
 };
 
 export const WHATSAPP_NUMBER = ((import.meta.env["VITE_WHATSAPP_NUMBER"] as string | undefined) ?? "").replace(/\D/g, "");
-const WEBHOOK_URL = (import.meta.env["VITE_LEAD_WEBHOOK_URL"] as string | undefined) ?? "";
+const WEBHOOK_URL =
+  (import.meta.env["VITE_LEAD_WEBHOOK_URL"] as string | undefined) ??
+  "https://hook.us1.make.celonis.com/3nvu2uw2e811shce0ploiwce8huhibll";
 
 // Guarda as UTMs da primeira visita da sessão, para não perder a origem
 // quando a pessoa navega por âncoras antes de preencher.
