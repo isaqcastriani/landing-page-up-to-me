@@ -1104,6 +1104,9 @@ function LeadForm() {
     if (problem) return;
     setStatus("sending");
     const link = await submitLead(lead);
+    const w = window as Window & { dataLayer?: unknown[] };
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ event: "lead_form_success" });
     setWaLink(link);
     setStatus("sent");
     if (link) window.open(link, "_blank", "noopener");
