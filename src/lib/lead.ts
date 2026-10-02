@@ -109,11 +109,16 @@ export async function submitLead(lead: Lead) {
 
   if (WEBHOOK_URL) {
     try {
-      // text/plain evita o preflight de CORS na maioria dos webhooks.
+      // application/x-www-form-urlencoded é "simple request" (sem preflight de
+      // CORS) e o Make separa cada campo automaticamente no cenário.
+      const body = new URLSearchParams();
+      for (const [key, value] of Object.entries(payload)) {
+        body.append(key, String(value));
+      }
       await fetch(WEBHOOK_URL, {
         method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=utf-8" },
+        body: body.toString(),
         keepalive: true,
       });
     } catch {
