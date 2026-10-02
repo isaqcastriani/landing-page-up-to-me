@@ -61,8 +61,6 @@ function readUtms(): Record<string, string> {
 
 type TrackingWindow = Window & {
   dataLayer?: unknown[];
-  fbq?: (...args: unknown[]) => void;
-  gtag?: (...args: unknown[]) => void;
 };
 
 export function track(event: string, params: Record<string, unknown> = {}) {
@@ -70,10 +68,6 @@ export function track(event: string, params: Record<string, unknown> = {}) {
   const w = window as TrackingWindow;
   w.dataLayer = w.dataLayer ?? [];
   w.dataLayer.push({ event, ...params });
-  if (event === "generate_lead") {
-    w.fbq?.("track", "Lead");
-    w.gtag?.("event", "generate_lead", params);
-  }
 }
 
 export function formatWhatsapp(value: string) {
