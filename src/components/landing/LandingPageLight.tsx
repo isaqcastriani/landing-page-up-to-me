@@ -291,6 +291,9 @@ function ContactForm() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const w = window as Window & { dataLayer?: unknown[] };
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ event: "lead_form_success" });
     setSent(true);
   }
 

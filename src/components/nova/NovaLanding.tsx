@@ -1144,7 +1144,7 @@ function LeadForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className={card}>
+    <form onSubmit={onSubmit} className={card}>
       <p className="text-lg sm:text-xl font-semibold">Quero ver no meu time</p>
       <div className="mt-5 space-y-4">
         <label className="block">
@@ -1152,6 +1152,7 @@ function LeadForm() {
           <input
             className={field}
             name="nome"
+            required
             autoComplete="name"
             placeholder="Seu nome e sobrenome"
             value={lead.nome}
@@ -1163,6 +1164,7 @@ function LeadForm() {
           <input
             className={field}
             name="whatsapp"
+            required
             type="tel"
             inputMode="tel"
             autoComplete="tel-national"
@@ -1177,6 +1179,7 @@ function LeadForm() {
             <input
               className={field}
               name="empresa"
+              required
               autoComplete="organization"
               placeholder="Nome da empresa"
               value={lead.empresa}
@@ -1201,6 +1204,7 @@ function LeadForm() {
             <select
               className={cn(field, "appearance-none pr-12", !lead.colaboradores && "text-[#a79d97]")}
               name="colaboradores"
+              required
               value={lead.colaboradores}
               onChange={(e) => update("colaboradores", e.target.value)}
             >
